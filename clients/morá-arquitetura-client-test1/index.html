@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morá Arquitetura — Projetos residenciais em São Paulo</title>
+  <meta name="description" content="Arquitetura residencial e interiores em São Paulo. Projetos que acompanhamos do conceito à obra entregue.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #F7F4EF;
+      --bg-alt:    #EDE9E2;
+      --text:      #1A1815;
+      --text-sec:  #6B6460;
+      --accent:    #8B7355;
+      --border:    #D4CFC8;
+      --white:     #FFFFFF;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans:  'DM Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAVBAR ─────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 68px;
+      background: rgba(247, 244, 239, 0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 0.5px solid var(--border);
+      transition: background 0.3s;
+    }
+
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: var(--text-sec);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .btn-nav {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--text);
+      text-decoration: none;
+      padding: 10px 22px;
+      border: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-nav:hover { background: var(--accent); }
+
+    /* ─── HERO ───────────────────────────────────────────────────── */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+      padding-top: 68px;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 64px 80px 80px;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--text-sec);
+      line-height: 1.7;
+      max-width: 420px;
+      margin-bottom: 40px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--text);
+      text-decoration: none;
+      padding: 14px 28px;
+      transition: background 0.25s;
+    }
+
+    .btn-primary:hover { background: var(--accent); }
+
+    .btn-secondary {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 0.5px solid var(--text);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .btn-secondary:hover { color: var(--accent); border-color: var(--accent); }
+
+    .hero-support {
+      font-size: 0.78rem;
+      color: var(--text-sec);
+      letter-spacing: 0.04em;
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 0.5px solid var(--border);
+    }
+
+    .hero-image {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ─── SECTION COMMONS ────────────────────────────────────────── */
+    section { padding: 96px 80px; }
+
+    .section-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--text-sec);
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    .section-header { margin-bottom: 64px; }
+
+    /* ─── PORTFOLIO ──────────────────────────────────────────────── */
+    .portfolio { background: var(--white); }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 3/4;
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1), filter 0.4s;
+    }
+
+    .project-card:hover img { transform: scale(1.04); filter: brightness(0.88); }
+
+    .project-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 24px;
+      background: linear-gradient(transparent, rgba(26,24,21,0.72));
+      color: var(--bg);
+      opacity: 0;
+      transition: opacity 0.35s;
+    }
+
+    .project-card:hover .project-overlay { opacity: 1; }
+
+    .project-overlay h3 {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin-bottom: 4px;
+    }
+
+    .project-overlay p {
+      font-size: 0.8rem;
+      opacity: 0.8;
+      letter-spacing: 0.04em;
+    }
+
+    .portfolio-footer {
+      margin-top: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .portfolio-footer p {
+      font-size: 0.9rem;
+      color: var(--text-sec);
+    }
+
+    /* ─── DIFERENCIAL ────────────────────────────────────────────── */
+    .diferencial {
+      background: var(--bg);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .diferencial-image {
+      aspect-ratio: 4/5;
+      overflow: hidden;
+    }
+
+    .diferencial-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .diferencial-content {}
+
+    .diferencial-body {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--text-sec);
+      line-height: 1.75;
+      margin-bottom: 48px;
+    }
+
+    .diferencial-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .diferencial-item {
+      padding: 24px 0;
+      border-top: 0.5px solid var(--border);
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .diferencial-item:last-child { border-bottom: 0.5px solid var(--border); }
+
+    .diferencial-num {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--accent);
+      line-height: 1;
+      padding-top: 2px;
+    }
+
+    .diferencial-item h4 {
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .diferencial-item p {
+      font-size: 0.875rem;
+      font-weight: 300;
+      color: var(--text-sec);
+    }
+
+    /* ─── PROCESSO ───────────────────────────────────────────────── */
+    .processo { background: var(--bg-alt); }
+
+    .processo-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+    }
+
+    .step {
+      background: var(--bg);
+      padding: 40px 32px;
+    }
+
+    .step-num {
+      font-family: var(--font-serif);
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+
+    .step h3 {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .step p {
+      font-size: 0.875rem;
+      font-weight: 300;
+      color: var(--text-sec);
+      line-height: 1.7;
+    }
+
+    .processo-footer {
+      margin-top: 48px;
+      text-align: center;
+    }
+
+    /* ─── SOBRE ──────────────────────────────────────────────────── */
+    .sobre {
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .sobre-image {
+      aspect-ratio: 4/5;
+      overflow: hidden;
+      background: var(--bg-alt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sobre-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .sobre-placeholder {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--border);
+      text-align: center;
+      padding: 40px;
+    }
+
+    .sobre-body {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--text-sec);
+      line-height: 1.8;
+      margin: 24px 0 40px;
+    }
+
+    .sobre-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      padding-top: 32px;
+      border-top: 0.5px solid var(--border);
+    }
+
+    .stat-num {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--text);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-sec);
+    }
+
+    /* ─── FAQ ────────────────────────────────────────────────────── */
+    .faq { background: var(--bg); }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 80px;
+    }
+
+    .faq-item {
+      padding: 28px 0;
+      border-top: 0.5px solid var(--border);
+    }
+
+    .faq-item:last-child, .faq-item:nth-last-child(2):nth-child(odd) {
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .faq-item h4 {
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .faq-item p {
+      font-size: 0.875rem;
+      font-weight: 300;
+      color: var(--text-sec);
+      line-height: 1.7;
+    }
+
+    /* ─── CTA ────────────────────────────────────────────────────── */
+    .cta-section {
+      background: var(--bg-alt);
+      text-align: center;
+      padding: 120px 80px;
+    }
+
+    .cta-section .section-title {
+      max-width: 560px;
+      margin: 0 auto 16px;
+    }
+
+    .cta-section .section-sub {
+      max-width: 440px;
+      margin: 0 auto 48px;
+      text-align: center;
+    }
+
+    .cta-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────────────── */
+    footer {
+      background: var(--bg-alt);
+      color: var(--text);
+      padding: 64px 80px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      border-top: 0.5px solid var(--border);
+    }
+
+    .footer-brand h3 {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+
+    .footer-brand p {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--text-sec);
+      line-height: 1.7;
+    }
+
+    .footer-col h4 {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-sec);
+      margin-bottom: 20px;
+    }
+
+    .footer-col ul { list-style: none; }
+
+    .footer-col ul li { margin-bottom: 10px; }
+
+    .footer-col ul li a {
+      font-size: 0.875rem;
+      font-weight: 300;
+      color: var(--text-sec);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover { color: var(--text); }
+
+    .footer-col p {
+      font-size: 0.875rem;
+      font-weight: 300;
+      color: var(--text-sec);
+      line-height: 1.7;
+    }
+
+    .footer-bottom {
+      background: var(--bg-alt);
+      border-top: 0.5px solid var(--border);
+      padding: 20px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-bottom p {
+      font-size: 0.78rem;
+      color: var(--text-sec);
+    }
+
+    /* ─── WHATSAPP FLUTUANTE ─────────────────────────────────────── */
+    .wa-float {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 52px;
+      height: 52px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+
+    .wa-float:hover { transform: scale(1.08); }
+
+    .wa-float svg { width: 26px; height: 26px; fill: white; }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      section { padding: 72px 48px; }
+      nav { padding: 0 32px; }
+      .hero-content { padding: 64px 48px; }
+      .diferencial { gap: 48px; }
+      .sobre { gap: 48px; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      section { padding: 64px 24px; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-content { padding: 64px 24px 40px; }
+      .hero-image { height: 60vw; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .project-card { aspect-ratio: 4/3; }
+      .diferencial { grid-template-columns: 1fr; }
+      .diferencial-image { aspect-ratio: 3/2; }
+      .processo-steps { grid-template-columns: 1fr 1fr; }
+      .sobre { grid-template-columns: 1fr; }
+      .sobre-image { aspect-ratio: 3/2; }
+      .faq-grid { grid-template-columns: 1fr; }
+      .cta-section { padding: 80px 24px; }
+      footer { grid-template-columns: 1fr 1fr; padding: 48px 24px; }
+      .footer-bottom { padding: 20px 24px; }
+      .footer-brand { grid-column: 1 / -1; }
+      .cta-actions { flex-direction: column; align-items: stretch; text-align: center; }
+      .hero-actions { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ──────────────────────────────────────────────────────── -->
+<nav>
+  <a href="#" class="nav-logo">Morá Arquitetura</a>
+  <ul class="nav-links">
+    <li><a href="#projetos">Projetos</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#processo">Processo</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <a href="https://wa.me/5511999999999" class="btn-nav">Falar com a Morá</a>
+</nav>
+
+<!-- ── HERO ────────────────────────────────────────────────────────── -->
+<section class="hero" style="padding:0;">
+  <div class="hero-content">
+    <p class="hero-eyebrow">Arquitetura residencial · São Paulo</p>
+    <h1 class="hero-title">
+      Projetos que ficam<br>
+      <em>do jeito que você<br>imaginou.</em>
+    </h1>
+    <p class="hero-sub">
+      A Morá cuida de tudo — do conceito à obra entregue.
+      Você foca em viver o espaço.
+    </p>
+    <div class="hero-actions">
+      <a href="https://wa.me/5511999999999" class="btn-primary">
+        Falar com a Morá
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#projetos" class="btn-secondary">Ver projetos</a>
+    </div>
+    <p class="hero-support">Arquitetura residencial em São Paulo · 7 anos de projetos entregues</p>
+  </div>
+  <div class="hero-image">
+    <img
+      src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200&q=85&auto=format&fit=crop"
+      alt="Projeto Morá Arquitetura — sala de estar"
+      loading="eager">
+  </div>
+</section>
+
+<!-- ── PORTFÓLIO ────────────────────────────────────────────────────── -->
+<section class="portfolio" id="projetos">
+  <div class="section-header">
+    <p class="section-eyebrow">Portfólio</p>
+    <h2 class="section-title">Projetos recentes</h2>
+    <p class="section-sub">Cada projeto é único. O processo é sempre o mesmo.</p>
+  </div>
+  <div class="portfolio-grid">
+    <div class="project-card">
+      <img src="https://images.unsplash.com/photo-1556020685-ae41abfc9365?w=800&q=80&auto=format&fit=crop" alt="Projeto Itaim — sala de estar">
+      <div class="project-overlay">
+        <h3>Apartamento Itaim</h3>
+        <p>Interiores · 120 m² · São Paulo</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800&q=80&auto=format&fit=crop" alt="Projeto Moema — cozinha e sala">
+      <div class="project-overlay">
+        <h3>Reforma Moema</h3>
+        <p>Reforma completa · 95 m² · São Paulo</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=800&q=80&auto=format&fit=crop" alt="Projeto Vila Nova — quarto master">
+      <div class="project-overlay">
+        <h3>Residência Vila Nova</h3>
+        <p>Projeto completo · 160 m² · São Paulo</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <img src="https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=800&q=80&auto=format&fit=crop" alt="Projeto Campo Belo — sala">
+      <div class="project-overlay">
+        <h3>Cobertura Campo Belo</h3>
+        <p>Interiores + paisagismo · 180 m² · São Paulo</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80&auto=format&fit=crop" alt="Projeto Brooklin — cozinha">
+      <div class="project-overlay">
+        <h3>Flat Brooklin</h3>
+        <p>Interiores · 78 m² · São Paulo</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <img src="https://images.unsplash.com/photo-1617104678098-de229db51175?w=800&q=80&auto=format&fit=crop" alt="Projeto Jardins — master suite">
+      <div class="project-overlay">
+        <h3>Apartamento Jardins</h3>
+        <p>Reforma e interiores · 130 m² · São Paulo</p>
+      </div>
+    </div>
+  </div>
+  <div class="portfolio-footer">
+    <p>6 projetos em exibição · Atualizado em 2026</p>
+    <a href="#contato" class="btn-secondary">Tem um projeto? Fale com a gente</a>
+  </div>
+</section>
+
+<!-- ── DIFERENCIAL ──────────────────────────────────────────────────── -->
+<section class="diferencial" id="diferencial">
+  <div class="diferencial-image">
+    <img
+      src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=900&q=85&auto=format&fit=crop"
+      alt="Processo Morá Arquitetura — acompanhamento de obra">
+  </div>
+  <div class="diferencial-content">
+    <p class="section-eyebrow">Por que a Morá</p>
+    <h2 class="section-title">Você não precisa virar gestor de obra.</h2>
+    <p class="diferencial-body">
+      A maioria dos escritórios entrega o projeto e some.
+      A Morá não. Mariana e Pedro estão no canteiro toda semana —
+      coordenando fornecedores, resolvendo imprevistos, garantindo
+      que o que foi aprovado seja o que vai ser entregue.
+    </p>
+    <div class="diferencial-items">
+      <div class="diferencial-item">
+        <span class="diferencial-num">01</span>
+        <div>
+          <h4>7 anos sem atraso significativo</h4>
+          <p>Em 7 anos, nenhuma obra atrasou mais de 15 dias. Isso não é sorte — é processo.</p>
+        </div>
+      </div>
+      <div class="diferencial-item">
+        <span class="diferencial-num">02</span>
+        <div>
+          <h4>Aprovação em 3D antes de qualquer execução</h4>
+          <p>O cliente vê o resultado em ambientação 3D antes de qualquer gasto em material.</p>
+        </div>
+      </div>
+      <div class="diferencial-item">
+        <span class="diferencial-num">03</span>
+        <div>
+          <h4>Presença na obra, toda semana</h4>
+          <p>WhatsApp direto com o arquiteto responsável pelo seu projeto durante toda a obra.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROCESSO ─────────────────────────────────────────────────────── -->
+<section class="processo" id="processo">
+  <div class="section-header" style="text-align:center; max-width:600px; margin:0 auto 64px;">
+    <p class="section-eyebrow">Como funciona</p>
+    <h2 class="section-title">Do primeiro contato à chave na mão.</h2>
+    <p class="section-sub" style="margin:0 auto;">Quatro etapas. Sem surpresa.</p>
+  </div>
+  <div class="processo-steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3>Conversa inicial</h3>
+      <p>Entendemos o espaço, o estilo e o objetivo. Sem compromisso.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3>Projeto</h3>
+      <p>Planta, ambientação 3D e todos os detalhes aprovados antes de qualquer execução.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3>Fornecedores</h3>
+      <p>A Morá seleciona e coordena marceneiros, revestimentos e parceiros de confiança — sem você precisar gerenciar nada.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h3>Acompanhamento de obra</h3>
+      <p>Visitas semanais, relatório e WhatsApp direto até a entrega das chaves.</p>
+    </div>
+  </div>
+  <div class="processo-footer">
+    <a href="#contato" class="btn-primary" style="margin: 0 auto; display: inline-flex;">Quero começar um projeto</a>
+  </div>
+</section>
+
+<!-- ── SOBRE ────────────────────────────────────────────────────────── -->
+<section class="sobre" id="sobre">
+  <div class="sobre-image">
+    <div class="sobre-placeholder">
+      <p style="font-size:1.2rem; margin-bottom:8px;">Mariana &amp; Pedro</p>
+      <p style="font-size:0.85rem;">Foto dos sócios — a confirmar</p>
+    </div>
+  </div>
+  <div>
+    <p class="section-eyebrow">Sobre o escritório</p>
+    <h2 class="section-title">Um escritório com cara de escritório.</h2>
+    <p class="sobre-body">
+      A Morá nasceu em 2017 no Campo Belo, São Paulo. Somos Mariana e Pedro —
+      dois arquitetos que acreditam que um bom projeto não termina na entrega das pranchas.
+      <br><br>
+      Mariana cuida do projeto e do relacionamento com o cliente.
+      Pedro coordena a obra e os fornecedores. Juntos, garantimos que o que foi pensado seja o que vai ser entregue.
+      <br><br>
+      Nossos projetos são residenciais, de médio e alto padrão,
+      em bairros como Itaim Bibi, Moema e Vila Nova Conceição.
+      Trabalhamos com uma agenda controlada — no máximo 8 projetos ao mesmo tempo —
+      porque acreditamos que presença não se divide em infinitos.
+    </p>
+    <div class="sobre-stats">
+      <div>
+        <span class="stat-num">7</span>
+        <span class="stat-label">Anos de mercado</span>
+      </div>
+      <div>
+        <span class="stat-num">60+</span>
+        <span class="stat-label">Projetos entregues</span>
+      </div>
+      <div>
+        <span class="stat-num">15d</span>
+        <span class="stat-label">Atraso máximo em 7 anos</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ──────────────────────────────────────────────────────────── -->
+<section class="faq">
+  <div class="section-header">
+    <p class="section-eyebrow">Dúvidas frequentes</p>
+    <h2 class="section-title">Perguntas que todo cliente faz.</h2>
+  </div>
+  <div class="faq-grid">
+    <div class="faq-item">
+      <h4>Quanto custa um projeto?</h4>
+      <p>Cada projeto tem um custo definido após uma conversa inicial, sem compromisso. O valor depende da metragem, do escopo e do nível de acabamento. A primeira conversa é gratuita e já resolve isso.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Vocês acompanham a obra?</h4>
+      <p>Sim. O acompanhamento de obra faz parte do nosso processo e é um dos principais diferenciais da Morá. Estamos no canteiro toda semana — você tem WhatsApp direto com o arquiteto responsável.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Atendem apartamento pequeno?</h4>
+      <p>Sim. Trabalhamos com projetos a partir de 60m². Uma conversa inicial já define se o escopo faz sentido para os dois lados.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Fazem projeto fora de São Paulo?</h4>
+      <p>Atendemos São Paulo capital e ABCDMRR. Para projetos em outras regiões, avaliar caso a caso — entre em contato e conversamos.</p>
+    </div>
+    <div class="faq-item">
+      <h4>O projeto pode ser feito em etapas?</h4>
+      <p>Sim. Podemos começar pelo projeto completo e executar a obra em fases, de acordo com a disponibilidade e prioridade do cliente.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Vocês usam 3D nas apresentações?</h4>
+      <p>Sim. Todas as apresentações incluem ambientação 3D. O cliente aprova o resultado visual antes de qualquer execução ou gasto com material.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA FINAL ─────────────────────────────────────────────────────── -->
+<section class="cta-section" id="contato">
+  <p class="section-eyebrow">Vamos conversar</p>
+  <h2 class="section-title">Pronto para conversar sobre o seu apartamento?</h2>
+  <p class="section-sub">Uma conversa de 30 minutos já dá para entender se faz sentido trabalharmos juntos.</p>
+  <div class="cta-actions">
+    <a href="https://wa.me/5511999999999" class="btn-primary">
+      Falar pelo WhatsApp
+    </a>
+    <a href="mailto:contato@moraarquitetura.com.br" class="btn-secondary">Enviar briefing inicial</a>
+  </div>
+</section>
+
+<!-- ── FOOTER ────────────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-brand">
+    <h3 style="font-family:var(--font-serif)">Morá Arquitetura</h3>
+    <p>Arquitetura residencial e interiores em São Paulo.<br>Do conceito à obra entregue.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Navegação</h4>
+    <ul>
+      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#processo">Processo</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Contato</h4>
+    <ul>
+      <li><a href="https://wa.me/5511999999999">WhatsApp</a></li>
+      <li><a href="mailto:contato@moraarquitetura.com.br">E-mail</a></li>
+      <li><a href="#">@mora.arq</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Endereço</h4>
+    <p>Campo Belo<br>São Paulo — SP<br><br>Atendemos SP capital<br>e ABCDMRR</p>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <p>© 2026 Morá Arquitetura</p>
+  <p>Site por <a href="#" style="color:var(--text-sec); text-decoration:none;">Builders</a></p>
+</div>
+
+<!-- ── WHATSAPP FLUTUANTE ────────────────────────────────────────────── -->
+<a href="https://wa.me/5511999999999" class="wa-float" title="Falar pelo WhatsApp" target="_blank">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+</body>
+</html>
