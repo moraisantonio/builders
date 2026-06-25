@@ -96,18 +96,13 @@ Tudo que se repete está em um lugar só — muda lá e reflete em todas as pág
 
 ## Deploy na Vercel
 
-O site usa o adapter oficial `@astrojs/vercel` e gera saída estática no formato
-Build Output API da Vercel.
+O site gera saída estática pura (`dist/`). O deploy é controlado pelo
+**`vercel.json` na raiz do repositório** — não precisa configurar nada no painel.
 
-**Importante — o site fica em subpasta do monorepo.** Ao importar o repositório
-na Vercel, configurar:
-
-| Configuração | Valor |
-|---|---|
-| **Root Directory** | `products/website` |
-| Framework Preset | Astro (detectado automaticamente) |
-| Build Command | `astro build` (padrão) |
-| Output | gerenciado pelo adapter (`.vercel/output`) |
+Como o site fica em subpasta do monorepo (`products/website`), o `vercel.json`
+já manda a Vercel instalar e buildar a subpasta e servir o `dist/` dela. Basta
+importar o repositório `moraisantonio/builders` com o Root Directory no padrão
+(a raiz do repo) e a Vercel cuida do resto.
 
 **Variáveis de ambiente na Vercel (opcionais):**
 
