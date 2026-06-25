@@ -1,0 +1,147 @@
+---
+// Pop-up reutilizável (ex: convite pra conversa, captura de lead).
+// Configurável por props — reusa o mesmo componente em qualquer página.
+// Aparece após `delay` segundos e, ao ser fechado, não volta a aparecer
+// (guarda a dispensa no localStorage pela chave `id`).
+interface Props {
+  id?: string;
+  title?: string;
+  text?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+  /** Segundos até aparecer. */
+  delay?: number;
+}
+const {
+  id = "popup-conversa",
+  title = "Vamos colocar seu negócio no digital?",
+  text = "A gente constrói, mantém e evolui o seu digital. Bora bater um papo rápido e sem compromisso.",
+  ctaLabel = "Agendar uma conversa",
+  ctaHref = "#contato",
+  delay = 12,
+} = Astro.props;
+---
+
+<div class="popup-root" data-popup={id} data-delay={delay} hidden>
+  <div class="popup-backdrop" data-popup-close></div>
+  <div
+    class="popup-card"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby={`${id}-title`}
+  >
+    <button class="popup-x" data-popup-close aria-label="Fechar">×</button>
+    <p class="popup-eyebrow">builders</p>
+    <h2 class="popup-title" id={`${id}-title`}>{title}</h2>
+    <p class="popup-text">{text}</p>
+    <a class="btn btn-primary btn-pill popup-cta" href={ctaHref}>{ctaLabel}</a>
+  </div>
+</div>
+
+<style>
+  .popup-root {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .popup-root[hidden] {
+    display: none;
+  }
+  .popup-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(9, 23, 23, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+  .popup-card {
+    position: relative;
+    max-width: 420px;
+    width: 100%;
+    background: var(--color-paper-white);
+    border: 1px solid var(--color-ecru);
+    border-radius: var(--radius-lg);
+    padding: 36px 32px 32px;
+    box-shadow: 0 24px 80px rgba(9, 23, 23, 0.28);
+    animation: popup-in 0.25s ease;
+  }
+  @keyframes popup-in {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .popup-x {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    line-height: 1;
+    color: var(--text-soft);
+    cursor: pointer;
+  }
+  .popup-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-turquoise);
+    margin: 0 0 10px;
+  }
+  .popup-title {
+    font-size: 22px;
+    line-height: 1.2;
+    color: var(--color-off-black);
+    margin: 0 0 12px;
+  }
+  .popup-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin: 0 0 22px;
+  }
+  .popup-cta {
+    font-size: 14px;
+  }
+</style>
+
+<script>
+  // Lógica mínima: mostra após o delay (uma vez por visitante) e fecha ao
+  // clicar no X, no fundo ou apertar Esc. Guarda a dispensa no localStorage.
+  document.querySelectorAll<HTMLElement>(".popup-root").forEach((root) => {
+    const id = root.dataset.popup ?? "popup";
+    const key = `builders:popup:${id}`;
+    const delay = Number(root.dataset.delay ?? "12") * 1000;
+
+    if (localStorage.getItem(key) === "dismissed") return;
+
+    const close = () => {
+      root.hidden = true;
+      localStorage.setItem(key, "dismissed");
+    };
+
+    const timer = window.setTimeout(() => {
+      root.hidden = false;
+    }, delay);
+
+    root.querySelectorAll("[data-popup-close]").forEach((el) =>
+      el.addEventListener("click", () => {
+        window.clearTimeout(timer);
+        close();
+      })
+    );
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !root.hidden) close();
+    });
+  });
+</script>

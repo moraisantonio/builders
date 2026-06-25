@@ -1,0 +1,90 @@
+---
+// Dobra 2 — Visão: o que a Builders faz (fundo escuro intencional).
+const benefits = [
+  "Sites que passam confiança e vendem",
+  "Atendimento e propostas no automático",
+  "Uma IA que responde pelo seu negócio",
+  "Tudo acompanhado num painel só",
+];
+---
+
+<section class="vision" id="sobre">
+  <div class="container">
+    <p class="eyebrow eyebrow-light">A Builders</p>
+    <div class="vision-grid">
+      <h2 class="vision-title">
+        A gente constrói o digital do seu negócio — e cuida dele depois.
+      </h2>
+      <div>
+        <p class="vision-lead">
+          Site, automação, atendimento e uma IA que trabalha pelo seu negócio. Você
+          foca no que faz de melhor; a gente cuida de toda a presença digital — da
+          construção ao dia a dia.
+        </p>
+        <ul class="vision-list">
+          {benefits.map((b) => <li><span class="dot"></span>{b}</li>)}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .vision {
+    background: var(--color-off-black);
+    padding: 112px 0;
+  }
+  .eyebrow-light {
+    margin-bottom: 24px;
+  }
+  .vision-grid {
+    display: flex;
+    gap: 64px;
+    align-items: flex-start;
+  }
+  .vision-title {
+    flex: 1;
+    font-size: 38px;
+    line-height: 1.2;
+    color: var(--color-paper-white);
+    margin: 0;
+  }
+  .vision-lead {
+    flex: 1;
+    font-size: 15px;
+    line-height: 1.75;
+    color: #7aada8;
+    margin: 0 0 32px;
+  }
+  .vision-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .vision-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--color-paper-white);
+  }
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-turquoise);
+    flex-shrink: 0;
+  }
+  @media (max-width: 860px) {
+    .vision-grid {
+      flex-direction: column;
+      gap: 32px;
+    }
+    .vision-title {
+      font-size: 28px;
+    }
+  }
+</style>

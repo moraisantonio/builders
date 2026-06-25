@@ -1,0 +1,284 @@
+---
+// Dobra 1 — Hero. Céu em gradiente, headline sobre a imagem, mockup do app
+// emergindo dos morros e o recorte do Rio. Headline + CTAs logo abaixo.
+import BrandIcon from "../BrandIcon.astro";
+
+const appTabs = ["Artefatos de Antônio", "Reuniões", "Pagamentos", "Configurações"];
+---
+
+<section class="hero" aria-label="Apresentação">
+  <div class="hero-scene">
+    <!-- Frase principal sobre o céu -->
+    <div class="hero-headline-wrap">
+      <h1 class="hero-headline">
+        Soluções para organizar e fortalecer sua
+        <span class="hero-accent">presença digital</span>
+      </h1>
+    </div>
+
+    <!-- Mockup do Builders App emergindo dos morros -->
+    <div class="hero-app" aria-hidden="true">
+      <div class="hero-app-tabs">
+        <div class="hero-app-brand">
+          <BrandIcon size={11} color="#20808D" />
+          <span>builders</span>
+        </div>
+        {appTabs.map((tab) => <span class="hero-app-tab">{tab}</span>)}
+      </div>
+      <div class="hero-app-body">
+        <div class="hero-app-side">
+          <span>Artefatos de Antônio</span>
+        </div>
+        <div class="hero-app-main">
+          <span class="hero-app-title">Constructor</span>
+          <span class="hero-app-sub">Converse sobre qualquer aspecto da sua empresa.</span>
+          <div class="hero-app-bubble" style="height:44px"></div>
+          <span class="hero-app-q">Como eu posso aumentar o faturamento da minha empresa?</span>
+          <div class="hero-app-bubble" style="height:52px"></div>
+          <span class="hero-app-q">Foi super simples e objetivo!</span>
+          <div class="hero-app-input"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recorte do Rio: define a altura do hero; o app surge atrás dos morros -->
+    <img
+      class="hero-rio"
+      src="/rio-recorte.png"
+      alt="Paisagem do Rio de Janeiro"
+      width="1600"
+      height="900"
+    />
+  </div>
+
+  <!-- Listras de transição pro fundo claro -->
+  <div class="hero-stripes" aria-hidden="true"></div>
+
+  <!-- Headline + subheadline + CTAs abaixo da imagem -->
+  <div class="hero-pitch">
+    <div class="hero-pitch-left">
+      <img
+        src="/group-35.png"
+        alt="builders — AI-Powered Services as Software"
+        width="340"
+        height="200"
+      />
+    </div>
+    <div class="hero-pitch-right">
+      <p>
+        A gente constrói e cuida do digital do seu negócio — site, automação e uma
+        IA pro que o seu digital precisar.
+      </p>
+      <div class="hero-pitch-actions">
+        <a class="btn btn-primary" href="#contato">Agende uma conversa</a>
+        <a class="btn btn-outline" href="#builders-app">Conhecer a plataforma</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background: var(--color-paper-white);
+  }
+  .hero-scene {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: linear-gradient(
+      to bottom,
+      #2e93d2 0%,
+      #6fb1e0 42%,
+      #aacce6 66%,
+      #bcd7eb 100%
+    );
+  }
+  .hero-headline-wrap {
+    position: absolute;
+    top: 13%;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    padding: 0 32px;
+  }
+  .hero-headline {
+    margin: 0;
+    max-width: 560px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 58px;
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+    color: #13343b;
+  }
+  .hero-accent {
+    color: var(--color-paper-white);
+  }
+
+  .hero-app {
+    position: absolute;
+    z-index: 1;
+    top: 39%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 44%;
+    height: 48%;
+    border-radius: 12px 12px 0 0;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(30px) saturate(170%);
+    -webkit-backdrop-filter: blur(30px) saturate(170%);
+    box-shadow:
+      0 24px 80px rgba(9, 23, 23, 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-bottom: none;
+  }
+  .hero-app-tabs {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 8px 14px;
+    border-bottom: 1px solid rgba(228, 227, 212, 0.5);
+    background: rgba(255, 255, 255, 0.35);
+    overflow-x: auto;
+  }
+  .hero-app-brand {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .hero-app-brand span {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--color-off-black);
+  }
+  .hero-app-tab {
+    font-size: 10px;
+    color: var(--color-peacock);
+    flex-shrink: 0;
+  }
+  .hero-app-body {
+    display: flex;
+    height: 100%;
+  }
+  .hero-app-side {
+    width: 38%;
+    border-right: 1px solid var(--color-ecru);
+    padding: 14px;
+  }
+  .hero-app-side span {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--color-off-black);
+  }
+  .hero-app-main {
+    width: 62%;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .hero-app-title {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--color-off-black);
+  }
+  .hero-app-sub,
+  .hero-app-q {
+    font-size: 10px;
+    color: var(--color-peacock);
+  }
+  .hero-app-q {
+    text-align: center;
+  }
+  .hero-app-bubble {
+    border-radius: 8px;
+    background: rgba(32, 128, 141, 0.1);
+  }
+  .hero-app-input {
+    margin-top: auto;
+    height: 28px;
+    border-radius: 6px;
+    border: 1px solid var(--color-ecru);
+    background: #fff;
+  }
+
+  .hero-rio {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: auto;
+    display: block;
+    pointer-events: none;
+    filter: saturate(1) contrast(1.02) brightness(1.02);
+  }
+
+  .hero-stripes {
+    width: 100%;
+    height: 80px;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(46, 94, 90, 0.5) 0,
+      rgba(46, 94, 90, 0.5) 2px,
+      transparent 2px,
+      transparent 11px
+    );
+    -webkit-mask-image: linear-gradient(to bottom, #000, transparent);
+    mask-image: linear-gradient(to bottom, #000, transparent);
+  }
+
+  .hero-pitch {
+    display: flex;
+    gap: 48px;
+    align-items: flex-start;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 40px 48px 0;
+  }
+  .hero-pitch-left {
+    flex: 1;
+    display: flex;
+  }
+  .hero-pitch-left img {
+    width: 100%;
+    max-width: 340px;
+    height: auto;
+  }
+  .hero-pitch-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding-top: 6px;
+  }
+  .hero-pitch-right p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--color-peacock);
+    margin: 0;
+  }
+  .hero-pitch-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  /* Responsivo: headline e app encolhem; pitch vira coluna */
+  @media (max-width: 860px) {
+    .hero-headline {
+      font-size: 34px;
+    }
+    .hero-app {
+      width: 64%;
+    }
+    .hero-pitch {
+      flex-direction: column;
+      gap: 24px;
+    }
+  }
+</style>

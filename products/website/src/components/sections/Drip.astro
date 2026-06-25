@@ -1,0 +1,79 @@
+---
+// Dobra 4 — drip: a marca-vertente da Builders pra cafeterias.
+// Usa a voz e a cor da drip (verde-lima), não a da Builders.
+---
+
+<section class="drip">
+  <div class="container">
+    <div class="drip-card">
+      <div class="drip-glow" aria-hidden="true"></div>
+      <p class="drip-eyebrow">Nosso produto oficial</p>
+      <h2 class="drip-title">drip — tech no compasso do seu café</h2>
+      <p class="drip-text">
+        A agência tech da Builders feita só para cafeterias independentes. Site,
+        cardápio digital, WhatsApp no automático e presença no Google sempre
+        atualizada — do jeito que quem vive atrás do balcão precisa.
+      </p>
+      <a class="btn btn-pill drip-cta" href="#contato">Conhecer a drip</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .drip {
+    background: var(--color-paper-white);
+    padding: 112px 0;
+  }
+  .drip-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    background: #0e1311;
+    border: 1px solid #1f2a27;
+    padding: 64px;
+  }
+  .drip-glow {
+    position: absolute;
+    top: -120px;
+    right: -80px;
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200, 240, 110, 0.18), transparent 70%);
+    pointer-events: none;
+  }
+  .drip-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-lime);
+    margin: 0 0 20px;
+  }
+  .drip-title {
+    font-size: 40px;
+    line-height: 1.15;
+    color: var(--color-paper-white);
+    margin: 0;
+    max-width: 640px;
+  }
+  .drip-text {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #a8b5ae;
+    margin: 20px 0 36px;
+    max-width: 620px;
+  }
+  .drip-cta {
+    background: var(--color-lime);
+    color: #0e1311;
+    padding: 13px 28px;
+  }
+  @media (max-width: 720px) {
+    .drip-card {
+      padding: 40px 28px;
+    }
+    .drip-title {
+      font-size: 30px;
+    }
+  }
+</style>

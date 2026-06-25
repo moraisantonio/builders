@@ -1,0 +1,113 @@
+---
+// Página inicial (/) — monta as dobras da landing.
+// Cada dobra é um componente isolado em components/sections.
+import { SITE, SITE_URL } from "../consts";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/sections/Hero.astro";
+import Vision from "../components/sections/Vision.astro";
+import Services from "../components/sections/Services.astro";
+import Drip from "../components/sections/Drip.astro";
+import Cases from "../components/sections/Cases.astro";
+import HowItWorks from "../components/sections/HowItWorks.astro";
+import BuildersApp from "../components/sections/BuildersApp.astro";
+import People from "../components/sections/People.astro";
+import Plans from "../components/sections/Plans.astro";
+import FinalCta from "../components/sections/FinalCta.astro";
+import Popup from "../components/Popup.astro";
+
+// Dados estruturados da home — base de SEO, AEO e GEO.
+// Organization + WebSite ajudam o Google; FAQPage é o que motores de IA
+// (ChatGPT, AI Overviews) mais citam, por trazer respostas diretas.
+const organization = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: SITE.legalName,
+  alternateName: "Builders",
+  url: SITE_URL,
+  logo: new URL("/builders-logo.png", SITE_URL).toString(),
+  description: SITE.description,
+  slogan: "A gente constrói o digital do seu negócio — e cuida dele depois.",
+  areaServed: "BR",
+  knowsAbout: [
+    "Criação de sites",
+    "Automação de atendimento",
+    "Agentes de IA",
+    "Presença digital para pequenos e médios negócios",
+  ],
+};
+
+const website = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: SITE.legalName,
+  url: SITE_URL,
+  inLanguage: "pt-BR",
+  publisher: { "@type": "Organization", name: SITE.legalName },
+};
+
+// FAQ pensada pra ser citada por motores de resposta — perguntas reais,
+// respostas curtas e factuais sobre o que a Builders faz.
+const faq = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "O que a Builders faz?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "A Builders constrói e cuida do digital de pequenos e médios negócios: sites profissionais, automação de atendimento, agentes de IA e um painel (Builders App) onde o cliente acompanha tudo.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Como funciona a contratação?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "São dois momentos. No Setup, você paga uma vez pela construção do site, da automação e da IA do negócio. Na plataforma Builders, uma assinatura mensal mantém a IA ativa e a Builders por perto para ajustes e novos serviços.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Para quem é a Builders?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Para pequenos e médios negócios no Brasil que querem crescer no digital sem montar um time de tecnologia. O foco inicial é em escritórios de arquitetura; cafeterias são atendidas pela marca-vertente drip.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "A Builders usa inteligência artificial de verdade?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Sim. A IA é o motor da operação: cada negócio ganha uma IA própria que atende, tira dúvidas e registra informações 24 horas por dia, integrada ao site e às automações.",
+      },
+    },
+  ],
+};
+---
+
+<BaseLayout jsonLd={[organization, website, faq]}>
+  <Hero />
+  <div class="spacer-light"></div>
+  <Vision />
+  <Services />
+  <Drip />
+  <Cases />
+  <HowItWorks />
+  <BuildersApp />
+  <People />
+  <Plans />
+  <FinalCta />
+
+  <!-- Pop-up reutilizável (overlay sobre a página) -->
+  <Popup slot="overlays" />
+</BaseLayout>
+
+<style>
+  /* Respiro branco entre o hero e a primeira seção escura */
+  .spacer-light {
+    background: var(--color-paper-white);
+    height: 96px;
+  }
+</style>

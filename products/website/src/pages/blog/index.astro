@@ -1,0 +1,127 @@
+---
+// Listagem do blog (/blog) — lista os posts publicados, do mais novo ao mais antigo.
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric" });
+---
+
+<BaseLayout
+  title="Blog"
+  description="Ideias diretas sobre site, automação e IA para pequenos e médios negócios crescerem no digital."
+>
+  <section class="blog-index">
+    <div class="blog-inner">
+      <p class="eyebrow">Blog</p>
+      <h1>Ideias para o digital do seu negócio</h1>
+      <p class="blog-lead">
+        Conteúdo direto sobre site, automação e IA — sem jargão, do jeito que quem
+        toca o negócio precisa.
+      </p>
+
+      <ul class="post-list">
+        {
+          posts.map((post) => (
+            <li class="post-item">
+              <a href={`/blog/${post.id}/`}>
+                {post.data.heroImage && (
+                  <img
+                    class="post-thumb"
+                    src={post.data.heroImage}
+                    alt=""
+                    width="720"
+                    height="360"
+                    loading="lazy"
+                  />
+                )}
+                <div class="post-info">
+                  <time datetime={post.data.pubDate.toISOString()}>
+                    {fmt(post.data.pubDate)}
+                  </time>
+                  <h2>{post.data.title}</h2>
+                  <p>{post.data.description}</p>
+                </div>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-index {
+    background: var(--color-paper-white);
+    padding: 140px 24px 96px;
+  }
+  .blog-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .blog-inner h1 {
+    font-size: 40px;
+    line-height: 1.12;
+    color: var(--color-off-black);
+    margin: 0 0 16px;
+  }
+  .blog-lead {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--color-peacock);
+    margin: 0 0 48px;
+  }
+  .post-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .post-item a {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 24px;
+    text-decoration: none;
+    align-items: center;
+  }
+  .post-thumb {
+    width: 200px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: var(--radius);
+  }
+  .post-info time {
+    font-size: 12px;
+    color: var(--text-soft);
+  }
+  .post-info h2 {
+    font-size: 22px;
+    color: var(--color-off-black);
+    margin: 6px 0 8px;
+  }
+  .post-info p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--color-peacock);
+    margin: 0;
+  }
+  .post-item a:hover h2 {
+    color: var(--color-turquoise);
+  }
+  @media (max-width: 640px) {
+    .post-item a {
+      grid-template-columns: 1fr;
+    }
+    .post-thumb {
+      width: 100%;
+      height: 180px;
+    }
+  }
+</style>

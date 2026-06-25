@@ -1,0 +1,91 @@
+---
+// Dobra 6 — Como funciona: projeto único + plataforma mensal.
+---
+
+<section class="how" id="como-funciona">
+  <div class="container">
+    <p class="eyebrow">Como funciona</p>
+    <h2 class="section-title">
+      Você paga uma vez pra construir.<br />Paga todo mês pra nunca ficar sozinho.
+    </h2>
+    <div class="how-grid">
+      <article class="how-card">
+        <p class="how-step">Momento 1 · Projeto</p>
+        <h3>A gente constrói</h3>
+        <p class="how-desc">
+          Site, automação, IA de atendimento ou a combinação certa pro seu negócio.
+          Você paga uma vez pela construção.
+        </p>
+      </article>
+      <article class="how-card how-card-dark">
+        <p class="how-step">Momento 2 · Plataforma</p>
+        <h3>A gente cuida junto</h3>
+        <p class="how-desc">
+          Depois que entra no ar, a IA do seu negócio fica ativa e você pede ajustes
+          e novos serviços quando precisar. Tudo na assinatura.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .how {
+    background: var(--color-paper-white);
+    padding: 112px 0;
+  }
+  .section-title {
+    font-size: 36px;
+    line-height: 1.2;
+    color: var(--color-off-black);
+    margin: 0 0 48px;
+  }
+  .how-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .how-card {
+    background: #fff;
+    border: 1px solid var(--color-ecru);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+  }
+  .how-card-dark {
+    background: var(--color-off-black);
+    border-color: var(--color-inky-blue);
+  }
+  .how-step {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-turquoise);
+    margin: 0 0 12px;
+  }
+  .how-card h3 {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--color-off-black);
+    margin: 0 0 12px;
+  }
+  .how-card-dark h3 {
+    color: var(--color-paper-white);
+  }
+  .how-desc {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--color-peacock);
+    margin: 0;
+  }
+  .how-card-dark .how-desc {
+    color: #7aada8;
+  }
+  @media (max-width: 720px) {
+    .how-grid {
+      grid-template-columns: 1fr;
+    }
+    .section-title {
+      font-size: 26px;
+    }
+  }
+</style>
