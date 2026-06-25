@@ -1,0 +1,103 @@
+---
+// <head> central do site — define SEO, AEO e GEO por página num lugar só.
+// Cada página passa title/description próprios; o resto tem default sensato.
+// JSON-LD (dados estruturados) entra via prop `jsonLd` — string ou array de objetos.
+import { SITE } from "../consts";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  /** Tipo Open Graph: "website" pra páginas, "article" pra posts. */
+  type?: "website" | "article";
+  /** Não indexar esta página (ex: páginas internas). */
+  noindex?: boolean;
+  /** Objeto(s) JSON-LD pra dados estruturados (Schema.org). */
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+  title,
+  description = SITE.description,
+  image = SITE.ogImage,
+  type = "website",
+  noindex = false,
+  jsonLd,
+} = Astro.props;
+
+// Título: usa o da página com template, ou o título padrão na home.
+const pageTitle = title ? SITE.titleTemplate.replace("%s", title) : SITE.defaultTitle;
+
+// URL canônica desta página (sem barra final duplicada) e URL absoluta da imagem.
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? SITE_URL_FALLBACK());
+const socialImage = new URL(image, Astro.site ?? SITE_URL_FALLBACK());
+
+// Fallback caso `site` não esteja definido em dev.
+function SITE_URL_FALLBACK() {
+  return "http://localhost:4321";
+}
+
+// Normaliza JSON-LD pra sempre ser uma lista.
+const structuredData = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+
+<!-- SEO essencial -->
+<title>{pageTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+{
+  noindex ? (
+    <meta name="robots" content="noindex, nofollow" />
+  ) : (
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+  )
+}
+
+<!-- Favicon e ícones -->
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/favicon-512.png" />
+
+<!-- Open Graph (compartilhamento em redes e prévia de links) -->
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content={SITE.legalName} />
+<meta property="og:locale" content={SITE.locale} />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:image" content={socialImage} />
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={pageTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={socialImage} />
+
+<!-- Performance: pré-conexão com a fonte -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<!-- RSS do blog (descoberta por leitores e por máquinas) -->
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title={`${SITE.legalName} — Blog`}
+  href="/rss.xml"
+/>
+
+<!-- Dados estruturados (Schema.org) — base de SEO, AEO e GEO.
+     Ajuda Google, ChatGPT e AI Overviews a entender e citar o conteúdo. -->
+{
+  structuredData.map((data) => (
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(data)}
+    />
+  ))
+}

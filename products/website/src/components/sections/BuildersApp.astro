@@ -1,0 +1,91 @@
+---
+// Dobra 7 — Builders App: o painel do cliente.
+const features = [
+  "Chat com a IA do seu negócio",
+  "Pedidos de ajuste e novos serviços",
+  "Acompanhamento dos resultados",
+  "Tudo o que a Builders cuida, num lugar só",
+];
+---
+
+<section class="bapp" id="builders-app">
+  <div class="container bapp-grid">
+    <div class="bapp-intro">
+      <p class="eyebrow eyebrow-lime">Builders App</p>
+      <h2>O painel onde o seu digital vive.</h2>
+      <p class="bapp-lead">
+        Converse com a IA do seu negócio, acompanhe resultados, peça um site novo ou
+        um ajuste — tudo num lugar só. Você no controle, sem depender de ninguém.
+      </p>
+    </div>
+    <ul class="bapp-list">
+      {features.map((f) => <li><span class="dot"></span>{f}</li>)}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .bapp {
+    background: var(--color-inky-blue);
+    padding: 112px 0;
+  }
+  .bapp-grid {
+    display: flex;
+    gap: 64px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .bapp-intro {
+    flex: 1;
+    min-width: 280px;
+  }
+  .eyebrow-lime {
+    color: var(--color-lime);
+    margin-bottom: 16px;
+  }
+  .bapp-intro h2 {
+    font-size: 34px;
+    line-height: 1.2;
+    color: var(--color-paper-white);
+    margin: 0 0 20px;
+  }
+  .bapp-lead {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #a8d4d0;
+    margin: 0;
+  }
+  .bapp-list {
+    flex: 1;
+    min-width: 280px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .bapp-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    font-size: 14px;
+    color: var(--color-paper-white);
+  }
+  .bapp-list .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-lime);
+    flex-shrink: 0;
+  }
+  @media (max-width: 720px) {
+    .bapp-intro h2 {
+      font-size: 26px;
+    }
+  }
+</style>

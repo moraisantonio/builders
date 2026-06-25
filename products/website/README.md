@@ -1,58 +1,49 @@
 # Website — Builders
 
-Site institucional da Builders. Apresenta a empresa, serviços, cases e converte visitante em lead.
+Site institucional da Builders. Apresenta a empresa, serviços, cases e blog, e converte visitante em lead.
+
+Feito em **Astro**: site estático, leve e rápido, com conteúdo em Markdown e tudo que se repete virando componente reutilizável.
 
 ---
 
 ## Stack
 
-- **Framework:** Next.js (App Router)
-- **Linguagem:** TypeScript
-- **Estilo:** Tailwind CSS
-- **Deploy:** Vercel
+- **Framework:** Astro (saída 100% estática, sem JS no cliente por padrão)
+- **Estilo:** CSS puro com tokens da marca (`src/styles/global.css`) + estilos escopados por componente
+- **Conteúdo:** Markdown (blog em `src/content/blog/`)
+- **Deploy:** Vercel (preset estático)
 - **Design:** Figma — https://www.figma.com/design/KWFaI1E10dT6bGptJva1CM/Buildrs
 
 ## Referências do repositório
 
-- Identidade visual: `../../brain/design/`
+- Identidade visual e tokens: `../../brain/design/design.md`
 - Copy oficial: `./COPY.md`
 - Rotas e páginas: `./ROUTES.md`
-- Serviços detalhados: `../../brain/services.md`
 
 ---
 
 ## Como rodar localmente
 
 ```bash
-# Instalar dependências
-npm install
-
-# Rodar em desenvolvimento
-npm run dev
-
-# Acessar
-http://localhost:3000
+npm install      # instala as dependências
+npm run dev      # sobe em http://localhost:4321
+npm run build    # gera o site estático em dist/ (gera sitemap)
+npm run preview  # serve o build de produção localmente
 ```
 
-## Como fazer deploy
-
-Deploy automático via Vercel a cada push na branch `main`.
-Confirmar com Antonio e Jorge antes de subir para produção.
-
-```bash
-# Build local para testar antes do deploy
-npm run build
-npm run start
-```
+> O `sitemap-index.xml` só é gerado no `build`, não no `dev`.
 
 ---
 
 ## Variáveis de ambiente
 
-```env
-# Criar arquivo .env.local na raiz de /website
-NEXT_PUBLIC_SITE_URL=        # URL do site em produção (definir após registrar domínio)
-```
+Copie `.env.example` para `.env`. Tudo é opcional — o site roda sem nada configurado.
+
+| Variável | Para quê |
+|---|---|
+| `PUBLIC_SITE_URL` | URL final do site (sitemap, canônicas, Open Graph). Definir na Vercel quando o domínio existir. |
+| `PUBLIC_GA_ID` | Google Analytics 4 (opcional). |
+| `PUBLIC_META_PIXEL` | Meta/Facebook Pixel (opcional). |
 
 ---
 
@@ -60,45 +51,54 @@ NEXT_PUBLIC_SITE_URL=        # URL do site em produção (definir após registra
 
 ```
 website/
-├── README.md               # Este arquivo
-├── ROUTES.md               # Mapa de páginas e rotas
-├── COPY.md                 # Todos os textos do site por seção
-├── public/                 # Arquivos estáticos
-│   ├── favicon.ico         # Copiar de ../../brain/design/
-│   ├── favicon-512.png     # Copiar de ../../brain/design/
-│   └── images/             # Imagens do site
+├── astro.config.mjs        # Config do Astro (site, sitemap)
+├── README.md · COPY.md · ROUTES.md
+├── public/                 # Estáticos servidos na raiz (imagens, favicon)
 ├── src/
-│   ├── app/                # Rotas Next.js (App Router)
-│   │   ├── page.tsx        # Página inicial (/)
-│   │   ├── layout.tsx      # Layout global
-│   │   └── ...             # Demais páginas
-│   ├── components/         # Componentes reutilizáveis
-│   │   ├── ui/             # Componentes base (botão, card, etc)
-│   │   └── sections/       # Seções da landing page
-│   └── styles/             # CSS global e tokens
-└── tailwind.config.ts      # Configuração do Tailwind com tokens da marca
+│   ├── consts.ts           # Config central: nome, navegação, contato, SEO
+│   ├── content.config.ts   # Schema da coleção do blog
+│   ├── content/blog/        # Posts em Markdown
+│   ├── styles/global.css    # Tokens da marca + estilos base
+│   ├── components/
+│   │   ├── BaseHead.astro    # <head> de SEO (meta, OG, JSON-LD)
+│   │   ├── Header.astro · Footer.astro
+│   │   ├── Tracking.astro    # Pixels/analytics (por env var)
+│   │   ├── Popup.astro       # Pop-up reutilizável
+│   │   ├── BrandIcon.astro   # Símbolo da marca
+│   │   └── sections/         # Dobras da home (Hero, Services, ...)
+│   ├── layouts/
+│   │   ├── BaseLayout.astro  # Casca de toda página (head + header + footer)
+│   │   └── BlogPost.astro    # Template de post do blog
+│   └── pages/
+│       ├── index.astro       # Home (/)
+│       ├── blog/             # Listagem + rota dinâmica do post
+│       ├── robots.txt.ts     # robots liberando bots de IA
+│       └── rss.xml.js        # Feed RSS do blog
 ```
 
 ---
 
-## Tokens de design no Tailwind
+## Componentes reutilizáveis
 
-Configurar `tailwind.config.ts` com as cores da marca:
+Tudo que se repete está em um lugar só — muda lá e reflete em todas as páginas:
 
-```ts
-colors: {
-  'off-black':       '#091717',
-  'inky-blue':       '#133B39',
-  'peacock':         '#2E5E5A',
-  'turquoise':       '#20808D',
-  'paper-white':     '#FBFAF4',
-  'ecru':            '#E4E3D4',
-  'apricot':         '#FFD2A6',
-  'terra-cotta':     '#A84B2F',
-  'boysenberry':     '#944454',
-}
-```
+- **Cabeçalho e rodapé** (`Header`, `Footer`) — navegação vem de `src/consts.ts`.
+- **Pop-up** (`Popup`) — configurável por props, lembra a dispensa do visitante.
+- **Tracking** (`Tracking`) — pixels/analytics centralizados, ativados por env var.
+- **Template de post** (`BlogPost`) — todo post novo é só um `.md` em `src/content/blog/`.
+
+## SEO, AEO e GEO
+
+- Title e meta description por página (via `BaseHead`).
+- Dados estruturados JSON-LD: `Organization`, `WebSite` e `FAQPage` na home; `BlogPosting` nos posts.
+- `sitemap-index.xml` automático e feed `rss.xml`.
+- `robots.txt` liberando explicitamente bots de IA (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, etc.) para que ChatGPT e o Google AI Overviews possam ler e citar o conteúdo.
+
+## Como fazer deploy
+
+Na Vercel, usar preset **Astro** (build `astro build`, saída `dist/`).
+Confirmar com Antonio e Jorge antes de subir para produção.
 
 ---
 
-*Builders Digital Solutions · Atualizado em maio de 2026*
+*Builders Digital Solutions · Migrado para Astro em junho de 2026*

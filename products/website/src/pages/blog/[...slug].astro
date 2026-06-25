@@ -1,0 +1,31 @@
+---
+// Rota dinâmica de cada post (/blog/<slug>/).
+// Gera uma página por arquivo Markdown e renderiza com o template BlogPost.
+import { getCollection, render } from "astro:content";
+import BlogPost from "../../layouts/BlogPost.astro";
+import Popup from "../../components/Popup.astro";
+
+// Pré-gera as páginas a partir da coleção (posts publicados).
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: post,
+  }));
+}
+
+const post = Astro.props;
+const { Content } = await render(post);
+---
+
+<BlogPost
+  title={post.data.title}
+  description={post.data.description}
+  pubDate={post.data.pubDate}
+  updatedDate={post.data.updatedDate}
+  heroImage={post.data.heroImage}
+  author={post.data.author}
+>
+  <Content />
+  <Popup slot="overlays" id="popup-blog" delay={20} />
+</BlogPost>

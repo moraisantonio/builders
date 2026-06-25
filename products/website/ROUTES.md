@@ -20,6 +20,8 @@
 /manifesto          → Manifesto da empresa
 /cases              → Cases e portfólio
   /cases/[slug]     → Case individual
+/blog               → Blog (listagem)
+  /blog/[slug]      → Post individual (template BlogPost)
 /sobre              → Sobre a empresa e o time
 /entrar             → Login no Builders App (CTA do menu)
 ```

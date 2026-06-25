@@ -1,0 +1,99 @@
+---
+// Dobra 8 — Planos: setup (projeto único) + plataforma (mensal).
+---
+
+<section class="plans" id="planos">
+  <div class="container">
+    <p class="eyebrow">Planos</p>
+    <h2 class="section-title">Simples: um pra construir, um pra manter</h2>
+    <div class="plans-grid">
+      <article class="plan-card">
+        <h3>Setup</h3>
+        <p class="plan-tag">Projeto único</p>
+        <p class="plan-desc">
+          A construção do seu digital: site, automação e a configuração da IA do
+          negócio. Você paga uma vez.
+        </p>
+      </article>
+      <article class="plan-card plan-card-dark">
+        <h3>Plataforma Builders</h3>
+        <p class="plan-tag">Assinatura mensal</p>
+        <p class="plan-desc">
+          A IA do seu negócio sempre ativa, suporte próximo e novos serviços quando
+          precisar. Sem montar equipe.
+        </p>
+      </article>
+    </div>
+    <p class="plans-note">
+      Valores sob medida pro tamanho do seu negócio — a gente monta a proposta na
+      conversa.
+    </p>
+  </div>
+</section>
+
+<style>
+  .plans {
+    background: var(--color-paper-white);
+    padding: 112px 0;
+  }
+  .section-title {
+    font-size: 36px;
+    line-height: 1.2;
+    color: var(--color-off-black);
+    margin: 0 0 48px;
+  }
+  .plans-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .plan-card {
+    background: #fff;
+    border: 1px solid var(--color-ecru);
+    border-radius: var(--radius-lg);
+    padding: 36px;
+  }
+  .plan-card-dark {
+    background: var(--color-off-black);
+    border-color: var(--color-inky-blue);
+  }
+  .plan-card h3 {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--color-off-black);
+    margin: 0 0 6px;
+  }
+  .plan-card-dark h3 {
+    color: var(--color-paper-white);
+  }
+  .plan-tag {
+    font-size: 13px;
+    color: var(--color-peacock);
+    margin: 0 0 20px;
+  }
+  .plan-card-dark .plan-tag {
+    color: #7aada8;
+  }
+  .plan-desc {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--color-peacock);
+    margin: 0;
+  }
+  .plan-card-dark .plan-desc {
+    color: #7aada8;
+  }
+  .plans-note {
+    font-size: 13px;
+    color: var(--text-soft);
+    margin-top: 24px;
+  }
+  @media (max-width: 720px) {
+    .plans-grid {
+      grid-template-columns: 1fr;
+    }
+    .section-title {
+      font-size: 28px;
+    }
+  }
+</style>

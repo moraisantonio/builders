@@ -1,0 +1,165 @@
+---
+// Template de post do blog — usado por TODOS os posts.
+// Recebe os dados do frontmatter do Markdown e cuida de layout, tipografia
+// e dados estruturados (BlogPosting) pra SEO/AEO/GEO. Muda aqui = muda em todos.
+import { SITE } from "../consts";
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  heroImage?: string;
+  author?: string;
+}
+
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  heroImage,
+  author = "Equipe Builders",
+} = Astro.props;
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric" });
+
+// Dados estruturados do artigo — ajudam Google e motores de IA a citar o post.
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: title,
+  description,
+  datePublished: pubDate.toISOString(),
+  dateModified: (updatedDate ?? pubDate).toISOString(),
+  author: { "@type": "Organization", name: author },
+  publisher: {
+    "@type": "Organization",
+    name: SITE.legalName,
+    logo: { "@type": "ImageObject", url: new URL("/builders-logo.png", SITE_URL()).toString() },
+  },
+  mainEntityOfPage: { "@type": "WebPage", "@id": Astro.url.href },
+  ...(heroImage ? { image: new URL(heroImage, SITE_URL()).toString() } : {}),
+};
+
+function SITE_URL() {
+  return Astro.site ?? new URL("http://localhost:4321");
+}
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  image={heroImage ?? SITE.ogImage}
+  type="article"
+  jsonLd={jsonLd}
+>
+  <article class="post">
+    <div class="post-inner">
+      <a class="post-back" href="/blog">← Blog</a>
+      <header class="post-header">
+        <h1>{title}</h1>
+        <p class="post-meta">
+          <time datetime={pubDate.toISOString()}>{fmt(pubDate)}</time>
+          {updatedDate && <span> · atualizado em {fmt(updatedDate)}</span>}
+          <span> · {author}</span>
+        </p>
+      </header>
+      {
+        heroImage && (
+          <img class="post-hero" src={heroImage} alt="" loading="eager" />
+        )
+      }
+      <div class="post-body">
+        <slot />
+      </div>
+    </div>
+  </article>
+
+  <!-- Pop-up reutilizável no fim da leitura do post -->
+  <slot name="overlays" />
+</BaseLayout>
+
+<style>
+  .post {
+    background: var(--color-paper-white);
+    padding: 140px 24px 96px;
+  }
+  .post-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .post-back {
+    font-size: 13px;
+    color: var(--color-turquoise);
+    text-decoration: none;
+  }
+  .post-header {
+    margin: 24px 0 32px;
+  }
+  .post-header h1 {
+    font-size: 40px;
+    line-height: 1.12;
+    color: var(--color-off-black);
+    margin: 0 0 16px;
+  }
+  .post-meta {
+    font-size: 13px;
+    color: var(--text-soft);
+    margin: 0;
+  }
+  .post-hero {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    margin-bottom: 40px;
+  }
+  /* Tipografia do corpo do post — vinda do Markdown */
+  .post-body :global(h2) {
+    font-size: 26px;
+    margin: 48px 0 16px;
+    color: var(--color-off-black);
+  }
+  .post-body :global(h3) {
+    font-size: 20px;
+    margin: 36px 0 12px;
+    color: var(--color-off-black);
+  }
+  .post-body :global(p) {
+    font-size: 17px;
+    line-height: 1.75;
+    color: #1f2a27;
+    margin: 0 0 20px;
+  }
+  .post-body :global(ul),
+  .post-body :global(ol) {
+    font-size: 17px;
+    line-height: 1.75;
+    color: #1f2a27;
+    padding-left: 22px;
+    margin: 0 0 20px;
+  }
+  .post-body :global(li) {
+    margin-bottom: 8px;
+  }
+  .post-body :global(a) {
+    color: var(--color-turquoise);
+  }
+  .post-body :global(blockquote) {
+    border-left: 3px solid var(--color-turquoise);
+    margin: 24px 0;
+    padding: 4px 20px;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+  .post-body :global(strong) {
+    font-weight: 600;
+  }
+  @media (max-width: 720px) {
+    .post-header h1 {
+      font-size: 30px;
+    }
+  }
+</style>

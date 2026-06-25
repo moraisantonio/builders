@@ -1,0 +1,89 @@
+---
+// Dobra 9 — CTA final sobre o pôr do sol do Rio. Âncora #contato.
+---
+
+<section class="cta" id="contato">
+  <img
+    class="cta-bg"
+    src="/rio-sunset.jpg"
+    alt=""
+    aria-hidden="true"
+    width="1600"
+    height="900"
+    loading="lazy"
+  />
+  <div class="cta-overlay" aria-hidden="true"></div>
+  <div class="cta-inner">
+    <h2>Pronto pra colocar seu negócio no digital de verdade?</h2>
+    <p>
+      A gente constrói, mantém e evolui — você foca no que faz de melhor. Bora
+      conversar?
+    </p>
+    <div class="cta-actions">
+      <a class="btn btn-light btn-pill" href="#contato">Agendar uma conversa</a>
+      <a class="btn btn-pill cta-whats" href="#contato">Chamar no WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta {
+    position: relative;
+    padding: 140px 48px;
+    overflow: hidden;
+  }
+  .cta-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 60%;
+    filter: saturate(0.95) brightness(0.92);
+  }
+  .cta-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(9, 23, 23, 0.4),
+      rgba(9, 23, 23, 0.68)
+    );
+  }
+  .cta-inner {
+    position: relative;
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .cta-inner h2 {
+    font-size: 42px;
+    line-height: 1.15;
+    color: var(--color-paper-white);
+    margin: 0 0 20px;
+  }
+  .cta-inner p {
+    font-size: 15px;
+    line-height: 1.65;
+    color: rgba(251, 250, 244, 0.8);
+    margin: 0 0 40px;
+  }
+  .cta-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .cta-whats {
+    background: rgba(9, 23, 23, 0.28);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: var(--color-paper-white);
+  }
+  @media (max-width: 720px) {
+    .cta-inner h2 {
+      font-size: 30px;
+    }
+  }
+</style>
