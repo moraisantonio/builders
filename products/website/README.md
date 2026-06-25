@@ -27,7 +27,7 @@ Feito em **Astro**: site estático, leve e rápido, com conteúdo em Markdown e 
 ```bash
 npm install      # instala as dependências
 npm run dev      # sobe em http://localhost:4321
-npm run build    # gera o site estático em dist/ (gera sitemap)
+npm run build    # gera o build estático (.vercel/output) + sitemap
 npm run preview  # serve o build de produção localmente
 ```
 
@@ -94,11 +94,31 @@ Tudo que se repete está em um lugar só — muda lá e reflete em todas as pág
 - `sitemap-index.xml` automático e feed `rss.xml`.
 - `robots.txt` liberando explicitamente bots de IA (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, etc.) para que ChatGPT e o Google AI Overviews possam ler e citar o conteúdo.
 
-## Como fazer deploy
+## Deploy na Vercel
 
-Na Vercel, usar preset **Astro** (build `astro build`, saída `dist/`).
-Confirmar com Antonio e Jorge antes de subir para produção.
+O site usa o adapter oficial `@astrojs/vercel` e gera saída estática no formato
+Build Output API da Vercel.
+
+**Importante — o site fica em subpasta do monorepo.** Ao importar o repositório
+na Vercel, configurar:
+
+| Configuração | Valor |
+|---|---|
+| **Root Directory** | `products/website` |
+| Framework Preset | Astro (detectado automaticamente) |
+| Build Command | `astro build` (padrão) |
+| Output | gerenciado pelo adapter (`.vercel/output`) |
+
+**Variáveis de ambiente na Vercel (opcionais):**
+
+- `PUBLIC_SITE_URL` — domínio final (ex: `https://builders.com.br`). Enquanto não
+  for definido, o site usa automaticamente a URL de produção da Vercel
+  (`builders.vercel.app`) para sitemap, canônicas e Open Graph.
+- `PUBLIC_GA_ID`, `PUBLIC_META_PIXEL` — tracking, quando existirem.
+
+**Branches:** push em `main` → produção; push em outras branches → preview.
+Confirmar com Antonio e Jorge antes de promover para produção.
 
 ---
 
-*Builders Digital Solutions · Migrado para Astro em junho de 2026*
+*Builders Digital Solutions · Migrado para Astro (deploy Vercel) em junho de 2026*
