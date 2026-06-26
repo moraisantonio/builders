@@ -1,5 +1,7 @@
 ---
 // Dobra 9 — CTA final sobre o pôr do sol do Rio. Âncora #contato.
+// Os dois botões abrem o WhatsApp (canal de contato/agendamento atual).
+import { WHATSAPP_URL } from "../../consts";
 ---
 
 <section class="cta" id="contato">
@@ -20,8 +22,8 @@
       conversar?
     </p>
     <div class="cta-actions">
-      <a class="btn btn-light btn-pill" href="#contato">Agendar uma conversa</a>
-      <a class="btn btn-pill cta-whats" href="#contato">Chamar no WhatsApp</a>
+      <a class="btn btn-light btn-pill" href={WHATSAPP_URL} target="_blank" rel="noopener">Agendar uma conversa</a>
+      <a class="btn btn-pill cta-whats" href={WHATSAPP_URL} target="_blank" rel="noopener">Chamar no WhatsApp</a>
     </div>
   </div>
 </section>
