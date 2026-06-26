@@ -10,17 +10,22 @@ const features = [
 
 <section class="bapp" id="builders-app">
   <div class="container bapp-grid">
-    <div class="bapp-intro">
-      <p class="eyebrow eyebrow-lime">Builders App</p>
-      <h2>O painel onde o seu digital vive.</h2>
-      <p class="bapp-lead">
-        Converse com a IA do seu negócio, acompanhe resultados, peça um site novo ou
-        um ajuste — tudo num lugar só. Você no controle, sem depender de ninguém.
-      </p>
+    <div class="bapp-col">
+      <div class="bapp-intro">
+        <p class="eyebrow eyebrow-lime">Builders App</p>
+        <h2>O painel onde o seu digital vive.</h2>
+        <p class="bapp-lead">
+          Converse com a IA do seu negócio, acompanhe resultados, peça um site novo ou
+          um ajuste — tudo num lugar só. Você no controle, sem depender de ninguém.
+        </p>
+      </div>
+      <ul class="bapp-list">
+        {features.map((f) => <li><span class="dot"></span>{f}</li>)}
+      </ul>
     </div>
-    <ul class="bapp-list">
-      {features.map((f) => <li><span class="dot"></span>{f}</li>)}
-    </ul>
+    <figure class="bapp-media">
+      <img class="toned" src="/fotos/builders-app-dobra.jpg" alt="Site de cliente aberto no Builders App" loading="lazy" width="900" height="1200" />
+    </figure>
   </div>
 </section>
 
@@ -30,14 +35,33 @@ const features = [
     padding: 112px 0;
   }
   .bapp-grid {
-    display: flex;
-    gap: 64px;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 56px;
     align-items: center;
-    flex-wrap: wrap;
+  }
+  .bapp-col {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
   }
   .bapp-intro {
-    flex: 1;
     min-width: 280px;
+  }
+  .bapp-media {
+    margin: 0;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(200, 240, 110, 0.08);
+  }
+  .bapp-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    aspect-ratio: 4 / 3;
   }
   .eyebrow-lime {
     color: var(--color-lime);
@@ -56,8 +80,6 @@ const features = [
     margin: 0;
   }
   .bapp-list {
-    flex: 1;
-    min-width: 280px;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -82,6 +104,15 @@ const features = [
     border-radius: 50%;
     background: var(--color-lime);
     flex-shrink: 0;
+  }
+  @media (max-width: 860px) {
+    .bapp-grid {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+    .bapp-media {
+      order: -1;
+    }
   }
   @media (max-width: 720px) {
     .bapp-intro h2 {

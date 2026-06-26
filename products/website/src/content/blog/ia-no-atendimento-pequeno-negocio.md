@@ -3,7 +3,7 @@ title: "IA no atendimento: o que muda quando o time é enxuto"
 description: "Uma IA de atendimento responde na hora, registra tudo e não deixa cliente sem resposta. Veja como isso ajuda quem toca o negócio com pouca gente."
 pubDate: 2026-06-18
 author: "Equipe Builders"
-heroImage: "/people-1.jpg"
+heroImage: "/fotos/blog-ia.jpg"
 ---
 
 Quando o time é pequeno, todo cliente que fica sem resposta é uma venda que escapa.

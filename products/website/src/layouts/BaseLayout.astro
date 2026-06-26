@@ -35,11 +35,41 @@ const { title, description, image, type, noindex, jsonLd } = Astro.props;
   </head>
   <body>
     <a class="skip-link" href="#main">Pular para o conteúdo</a>
+    <!-- Film esverdeado global (atmosfera tech) — só visual, não interativo -->
+    <div class="site-film" aria-hidden="true"></div>
     <Header />
     <main id="main">
       <slot />
     </main>
     <Footer />
     <slot name="overlays" />
+
+    <!-- Reveal no scroll (feel intercom). is:inline = não passa pelo bundler.
+         Marca <html> com has-reveal só quando o JS roda; sem JS nada some. -->
+    <script is:inline>
+      (function () {
+        var root = document.documentElement;
+        if (!("IntersectionObserver" in window)) return;
+        root.classList.add("has-reveal");
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                e.target.classList.add("in-view");
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+        );
+        var run = function () {
+          document
+            .querySelectorAll("main > section:not(.hero)")
+            .forEach(function (s) { io.observe(s); });
+        };
+        if (document.readyState !== "loading") run();
+        else document.addEventListener("DOMContentLoaded", run);
+      })();
+    </script>
   </body>
 </html>
