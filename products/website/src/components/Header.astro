@@ -31,8 +31,12 @@ import BrandIcon from "./BrandIcon.astro";
 
 <style>
   .site-header {
-    position: sticky;
+    /* Absolute (não sticky): a navbar flutua sobre o hero, então o céu azul
+       começa no topo da página — sem faixa branca antes da imagem. */
+    position: absolute;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 100;
     padding: 18px 16px 0;
     pointer-events: none;
