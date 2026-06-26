@@ -1,26 +1,28 @@
 ---
-// Dobra 1 — Hero. Céu em gradiente, headline sobre a imagem, mockup do app
-// emergindo dos morros e o recorte do Rio. Headline + CTAs logo abaixo.
+// Dobra 1 — Hero. Altura controlada (não dependente do tamanho da imagem):
+// céu em gradiente, headline branca no topo, o app emergindo da paisagem do Rio
+// ancorada na base. Headline secundária + CTAs vêm depois da imagem.
 import BrandIcon from "../BrandIcon.astro";
 
-const appTabs = ["Artefatos de Antônio", "Reuniões", "Pagamentos", "Configurações"];
+// Rótulos curtos pra caber na barra da janela do app, agrupados à esquerda.
+const appTabs = ["Artefatos", "Reuniões", "Pagamentos", "Config."];
 ---
 
 <section class="hero" aria-label="Apresentação">
   <div class="hero-scene">
     <!-- Frase principal sobre o céu -->
-    <div class="hero-headline-wrap">
+    <div class="hero-intro">
       <h1 class="hero-headline">
         Soluções para organizar e fortalecer sua
         <span class="hero-accent">presença digital</span>
       </h1>
     </div>
 
-    <!-- Mockup do Builders App emergindo dos morros -->
+    <!-- App emergindo da paisagem (atrás do recorte, ancorado na base) -->
     <div class="hero-app" aria-hidden="true">
       <div class="hero-app-tabs">
         <div class="hero-app-brand">
-          <BrandIcon size={11} color="#20808D" />
+          <BrandIcon size={12} color="#20808D" />
           <span>builders</span>
         </div>
         {appTabs.map((tab) => <span class="hero-app-tab">{tab}</span>)}
@@ -32,16 +34,15 @@ const appTabs = ["Artefatos de Antônio", "Reuniões", "Pagamentos", "Configura�
         <div class="hero-app-main">
           <span class="hero-app-title">Constructor</span>
           <span class="hero-app-sub">Converse sobre qualquer aspecto da sua empresa.</span>
-          <div class="hero-app-bubble" style="height:44px"></div>
+          <div class="hero-app-bubble" style="height:42px"></div>
           <span class="hero-app-q">Como eu posso aumentar o faturamento da minha empresa?</span>
-          <div class="hero-app-bubble" style="height:52px"></div>
-          <span class="hero-app-q">Foi super simples e objetivo!</span>
+          <div class="hero-app-bubble" style="height:48px"></div>
           <div class="hero-app-input"></div>
         </div>
       </div>
     </div>
 
-    <!-- Recorte do Rio: define a altura do hero; o app surge atrás dos morros -->
+    <!-- Recorte do Rio: paisagem na frente; o app surge atrás dos morros -->
     <img
       class="hero-rio"
       src="/rio-recorte.png"
@@ -54,7 +55,7 @@ const appTabs = ["Artefatos de Antônio", "Reuniões", "Pagamentos", "Configura�
   <!-- Listras de transição pro fundo claro -->
   <div class="hero-stripes" aria-hidden="true"></div>
 
-  <!-- Headline + subheadline + CTAs abaixo da imagem -->
+  <!-- Headline secundária + CTAs abaixo da imagem -->
   <div class="hero-pitch">
     <div class="hero-pitch-left">
       <img
@@ -81,53 +82,77 @@ const appTabs = ["Artefatos de Antônio", "Reuniões", "Pagamentos", "Configura�
   .hero {
     background: var(--color-paper-white);
   }
+  /* Altura controlada pelo viewport, não pela imagem — evita o vão gigante */
   .hero-scene {
     position: relative;
-    width: 100%;
     overflow: hidden;
+    /* Altura fixa: previsível em qualquer monitor (vh deixava a cena curta
+       em telas mais baixas e o app subia por cima da headline).
+       App e morro ancorados na base sobem juntos quando esta altura diminui. */
+    min-height: 700px;
     background: linear-gradient(
       to bottom,
       #2e93d2 0%,
-      #6fb1e0 42%,
-      #aacce6 66%,
+      #6fb1e0 46%,
+      #a9cbe5 74%,
       #bcd7eb 100%
     );
   }
-  .hero-headline-wrap {
-    position: absolute;
-    top: 13%;
-    left: 0;
-    right: 0;
+
+  /* Headline em fluxo: respiro do menu fixo no topo, centralizada */
+  .hero-intro {
+    position: relative;
     z-index: 3;
     display: flex;
     justify-content: center;
-    padding: 0 32px;
+    text-align: center;
+    padding: 130px 32px 0;
   }
   .hero-headline {
     margin: 0;
-    max-width: 560px;
-    text-align: center;
+    max-width: 640px;
     font-weight: 700;
-    font-size: 58px;
-    line-height: 1.04;
-    letter-spacing: -0.04em;
+    font-size: 52px;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
     color: var(--color-paper-white);
   }
   .hero-accent {
     color: var(--color-paper-white);
   }
 
+  /* Paisagem do Rio empurrada pra baixo (bottom negativo): os morros descem,
+     revelando mais corpo do app acima deles (o app "emerge" mais), sem mexer
+     no topo do app — então ele continua sem encostar na frase. */
+  .hero-rio {
+    position: absolute;
+    left: 50%;
+    bottom: -80px;
+    transform: translateX(-50%);
+    width: 100%;
+    min-width: 1180px;
+    height: auto;
+    z-index: 2;
+    pointer-events: none;
+    filter: saturate(1) contrast(1.02) brightness(1.02);
+  }
+
+  /* App: maior, centralizado, ancorado na base, atrás da paisagem */
   .hero-app {
     position: absolute;
-    z-index: 1;
-    top: 39%;
     left: 50%;
+    bottom: 0;
     transform: translateX(-50%);
-    width: 44%;
-    height: 48%;
-    border-radius: 12px 12px 0 0;
+    z-index: 1;
+    width: min(600px, 58%);
+    /* Altura menor → topo do app desce, ficando abaixo da headline.
+       Com a cena em 740px, o topo do app fica ~390px (abaixo da frase). */
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 14px 14px 0 0;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.64);
     backdrop-filter: blur(30px) saturate(170%);
     -webkit-backdrop-filter: blur(30px) saturate(170%);
     box-shadow:
@@ -136,14 +161,16 @@ const appTabs = ["Artefatos de Antônio", "Reuniões", "Pagamentos", "Configura�
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-bottom: none;
   }
+
+  /* Barra de abas: agrupada à esquerda, contida na janela */
   .hero-app-tabs {
     display: flex;
     align-items: center;
-    gap: 20px;
-    padding: 8px 14px;
-    border-bottom: 1px solid rgba(228, 227, 212, 0.5);
-    background: rgba(255, 255, 255, 0.35);
-    overflow-x: auto;
+    gap: 16px;
+    padding: 10px 16px;
+    border-bottom: 1px solid rgba(228, 227, 212, 0.6);
+    background: rgba(255, 255, 255, 0.5);
+    flex-shrink: 0;
   }
   .hero-app-brand {
     display: flex;
@@ -152,48 +179,48 @@ const appTabs = ["Artefatos de Antônio", "Reuniões", "Pagamentos", "Configura�
     flex-shrink: 0;
   }
   .hero-app-brand span {
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 600;
     color: var(--color-off-black);
   }
   .hero-app-tab {
-    font-size: 10px;
+    font-size: 11px;
     color: var(--color-peacock);
-    flex-shrink: 0;
+    white-space: nowrap;
   }
+
   .hero-app-body {
     display: flex;
-    height: 100%;
+    flex: 1;
+    min-height: 0;
   }
   .hero-app-side {
-    width: 38%;
+    width: 36%;
     border-right: 1px solid var(--color-ecru);
-    padding: 14px;
+    padding: 16px;
   }
   .hero-app-side span {
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 500;
     color: var(--color-off-black);
   }
   .hero-app-main {
-    width: 62%;
-    padding: 14px;
+    width: 64%;
+    padding: 16px;
     display: flex;
     flex-direction: column;
     gap: 10px;
   }
   .hero-app-title {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
     color: var(--color-off-black);
   }
   .hero-app-sub,
   .hero-app-q {
-    font-size: 10px;
+    font-size: 11px;
+    line-height: 1.45;
     color: var(--color-peacock);
-  }
-  .hero-app-q {
-    text-align: center;
   }
   .hero-app-bubble {
     border-radius: 8px;
@@ -205,16 +232,6 @@ const appTabs = ["Artefatos de Antônio", "Reuniões", "Pagamentos", "Configura�
     border-radius: 6px;
     border: 1px solid var(--color-ecru);
     background: #fff;
-  }
-
-  .hero-rio {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    height: auto;
-    display: block;
-    pointer-events: none;
-    filter: saturate(1) contrast(1.02) brightness(1.02);
   }
 
   .hero-stripes {
@@ -268,13 +285,31 @@ const appTabs = ["Artefatos de Antônio", "Reuniões", "Pagamentos", "Configura�
     flex-wrap: wrap;
   }
 
-  /* Responsivo: headline e app encolhem; pitch vira coluna */
+  /* Tablet */
   @media (max-width: 860px) {
+    .hero-scene {
+      min-height: 620px;
+    }
+    .hero-intro {
+      padding-top: 116px;
+    }
     .hero-headline {
-      font-size: 34px;
+      font-size: 38px;
     }
     .hero-app {
-      width: 64%;
+      width: min(440px, 78%);
+      height: 320px;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 560px) {
+    .hero-headline {
+      font-size: 29px;
+    }
+    .hero-app {
+      width: 86%;
+      height: 300px;
     }
     .hero-pitch {
       flex-direction: column;
