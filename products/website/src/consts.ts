@@ -21,12 +21,20 @@ export const SITE = {
   ogImage: "/people-2.jpg",
   // Contato — ajustar quando os canais oficiais estiverem definidos.
   email: "contato@builders.com",
-  whatsapp: "", // ex: "5521999999999" — preencher quando o número for definido
+  whatsapp: "5521998116512", // +55 21 99811-6512
   social: {
     instagram: "",
     linkedin: "",
   },
 } as const;
+
+// Link de WhatsApp com mensagem pré-preenchida. Fonte única usada pelos CTAs de contato.
+// Se o número for limpo, cai de volta pra âncora #contato (não quebra o link).
+export const WHATSAPP_URL: string = SITE.whatsapp
+  ? `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(
+      "Olá! Vim pelo site da Builders e quero conversar sobre o digital do meu negócio.",
+    )}`
+  : "#contato";
 
 // Navegação principal — usada no Header e no Footer.
 // `href: "#"` marca destinos ainda não construídos (páginas internas pendentes).
