@@ -31,8 +31,12 @@ import BrandIcon from "./BrandIcon.astro";
 
 <style>
   .site-header {
-    position: sticky;
+    /* Fixed: a navbar flutua sobre o hero (céu azul começa no topo, sem faixa
+       branca) E acompanha o scroll, ficando sempre visível. */
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 100;
     padding: 18px 16px 0;
     pointer-events: none;
