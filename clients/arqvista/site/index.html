@@ -1,0 +1,215 @@
+<!doctype html>
+<!--
+  ArqVista — landing de IA para arquitetura (one-page).
+  Cliente: ArqVista. Cor da marca: azul escuro (navy).
+  Estático: HTML + CSS + JS vanilla, sem build.
+  Estrutura de seções espelhada de uma referência de landing de IA (nav, hero,
+  statement, segmentos, deep dive, prova social, stack de produto, pesquisa,
+  implantação, CTA, footer). Conteúdo 100% original do ArqVista.
+-->
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ArqVista — Inteligência artificial para arquitetura</title>
+  <meta name="description" content="Do briefing à planta em minutos. A ArqVista gera estudos, verifica normas e documenta projetos com IA — para escritórios de arquitetura de todos os tamanhos." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-glow bg-glow--1" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow--2" aria-hidden="true"></div>
+
+  <!-- ===== 1. Navbar ===== -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="#topo" aria-label="ArqVista — início"><span class="nav__mark" aria-hidden="true"></span>ArqVista</a>
+      <nav class="nav__links" aria-label="Navegação principal">
+        <a href="#segmentos">Segmentos</a>
+        <a href="#produto">Produto</a>
+        <a href="#modulos">Plataforma</a>
+        <a href="#precos">Implantação</a>
+      </nav>
+      <div class="nav__actions">
+        <a class="nav__login" href="#cta">Falar com vendas</a>
+        <a class="btn btn--accent" href="#cta">Começar agora</a>
+      </div>
+      <button class="nav__burger" id="burger" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- ===== 2. Hero ===== -->
+  <section class="hero" id="topo">
+    <canvas class="hero__canvas" id="blueprint" aria-hidden="true"></canvas>
+    <div class="hero__inner">
+      <p class="tag" data-reveal><span class="dot"></span>IA para arquitetura · em português</p>
+      <h1 class="hero__title" data-reveal style="--i:1">Do briefing à planta.<br /><span class="grad">Em minutos, não semanas.</span></h1>
+      <p class="hero__sub" data-reveal style="--i:2">A ArqVista lê o seu briefing e gera estudos de layout, verifica normas e monta a documentação técnica. Você decide; a IA faz o trabalho repetitivo.</p>
+      <div class="hero__actions" data-reveal style="--i:3">
+        <a class="btn btn--accent btn--lg" href="#cta">Começar grátis →</a>
+        <a class="btn btn--ghost btn--lg" href="#produto">Ver como funciona</a>
+      </div>
+      <p class="hero__note" data-reveal style="--i:4">Sem cartão · estudo preliminar em 1 projeto grátis</p>
+    </div>
+  </section>
+
+  <!-- ===== 3. Statement (missão) ===== -->
+  <section class="statement">
+    <h2 data-reveal>Acreditamos que arquiteto bom é arquiteto que projeta — <span class="muted">não que passa metade do tempo redesenhando layout, conferindo norma e formatando prancha.</span> A ArqVista assume essa parte.</h2>
+  </section>
+
+  <!-- ===== 4. Segmentos (aplicações) ===== -->
+  <section class="section cases" id="segmentos">
+    <div class="section__head" data-reveal>
+      <p class="tag--static">Para o seu tipo de projeto</p>
+      <h2 class="section__title">Funciona como você trabalha.</h2>
+    </div>
+    <div class="cases__layout" data-reveal>
+      <div class="cases__tabs" role="tablist">
+        <button class="cases__tab is-active" data-tab="0" role="tab">Residencial</button>
+        <button class="cases__tab" data-tab="1" role="tab">Comercial</button>
+        <button class="cases__tab" data-tab="2" role="tab">Incorporação</button>
+        <button class="cases__tab" data-tab="3" role="tab">Reforma</button>
+      </div>
+      <div class="cases__panels">
+        <div class="cases__panel is-active" data-panel="0">
+          <h3>Apartamentos e casas que cabem no programa do cliente.</h3>
+          <p>Gere variações de planta respeitando metragem, número de quartos e orientação solar. Compare opções lado a lado e leve a melhor para o cliente.</p>
+          <ul><li>Variações de layout em minutos</li><li>Estudo de insolação</li><li>Quadro de áreas automático</li></ul>
+        </div>
+        <div class="cases__panel" data-panel="1">
+          <h3>Lojas, escritórios e consultórios prontos para operar.</h3>
+          <p>Layouts que equilibram fluxo, postos de trabalho e normas de acessibilidade e segurança — com a documentação que o cliente precisa para aprovar.</p>
+          <ul><li>Fluxo e ocupação otimizados</li><li>Acessibilidade NBR 9050</li><li>Saídas e rotas de fuga</li></ul>
+        </div>
+        <div class="cases__panel" data-panel="2">
+          <h3>Estudos de viabilidade na velocidade da incorporadora.</h3>
+          <p>Teste tipologias e taxas de aproveitamento de um terreno antes de comprar. A ArqVista calcula o potencial construtivo conforme a lei de zoneamento.</p>
+          <ul><li>Potencial construtivo por zona</li><li>Mix de unidades</li><li>Massas e gabarito</li></ul>
+        </div>
+        <div class="cases__panel" data-panel="3">
+          <h3>Reforma sem retrabalho.</h3>
+          <p>A partir da planta existente, a IA propõe a nova configuração, sinaliza o que pode ou não ser removido e estima o impacto de cada mudança.</p>
+          <ul><li>Comparação antes/depois</li><li>Alerta de estrutura</li><li>Caderno de demolir/construir</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 5. Deep dive (por dentro de um projeto) ===== -->
+  <section class="section features" id="produto">
+    <div class="section__head" data-reveal>
+      <p class="tag--static">Por dentro de um projeto</p>
+      <h2 class="section__title">Seis etapas chatas, no automático.</h2>
+      <p class="section__lead">Do primeiro rascunho à entrega — a ArqVista cobre o caminho inteiro.</p>
+    </div>
+    <div class="features__grid">
+      <article class="card" data-reveal style="--i:0"><span class="card__idx">01</span><h3>Estudo de layout</h3><p>Opções de planta a partir do terreno, do programa e das restrições.</p></article>
+      <article class="card" data-reveal style="--i:1"><span class="card__idx">02</span><h3>Insolação e conforto</h3><p>Orientação solar, ventilação e sombreamento avaliados em cada opção.</p></article>
+      <article class="card" data-reveal style="--i:2"><span class="card__idx">03</span><h3>Verificação de normas</h3><p>Recuos, taxa de ocupação, acessibilidade e código de obras local.</p></article>
+      <article class="card" data-reveal style="--i:3"><span class="card__idx">04</span><h3>Render conceitual</h3><p>O estudo vira imagem de apresentação — material, luz e clima do ambiente.</p></article>
+      <article class="card" data-reveal style="--i:4"><span class="card__idx">05</span><h3>Quadro de áreas</h3><p>Metragens, percentuais e tabelas geradas a partir do próprio desenho.</p></article>
+      <article class="card" data-reveal style="--i:5"><span class="card__idx">06</span><h3>Documentação</h3><p>Memorial, caderno de acabamentos e legendas de prancha prontos para revisar.</p></article>
+    </div>
+  </section>
+
+  <!-- ===== 6. Prova social ===== -->
+  <section class="strip">
+    <p class="strip__label">De ateliês independentes a grandes incorporadoras</p>
+    <!-- nomes ilustrativos — substituir por clientes reais -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>ATELIÊ 9</span><span>ESTÚDIO NORTE</span><span>FORMA+</span><span>HABITAT</span><span>LINHA VIVA</span><span>PRAÇA</span><span>OFICINA URBANA</span>
+        <span>ATELIÊ 9</span><span>ESTÚDIO NORTE</span><span>FORMA+</span><span>HABITAT</span><span>LINHA VIVA</span><span>PRAÇA</span><span>OFICINA URBANA</span>
+      </div>
+    </div>
+    <div class="badge" data-reveal>
+      <span class="badge__star">★</span>
+      <span><strong>Construída com arquitetos brasileiros.</strong> Motor de normas por cidade, 100% em português.</span>
+    </div>
+  </section>
+
+  <!-- ===== 7. Stack de produto (plataforma) ===== -->
+  <section class="section modules" id="modulos">
+    <div class="section__head" data-reveal>
+      <p class="tag--static">A plataforma</p>
+      <h2 class="section__title">Três módulos. Um fluxo só.</h2>
+      <p class="section__lead">Use junto ou separado. Cada módulo conversa com o anterior.</p>
+    </div>
+    <div class="modules__grid">
+      <a class="module" href="#cta" data-reveal style="--i:0"><span class="module__name">Planta</span><p>Geração e otimização de layout a partir do briefing. Exporta para DWG e mantém suas camadas.</p><span class="module__link">Conhecer →</span></a>
+      <a class="module" href="#cta" data-reveal style="--i:1"><span class="module__name">Norma</span><p>Motor de conformidade com a legislação municipal e ABNT. Atualizado por cidade.</p><span class="module__link">Conhecer →</span></a>
+      <a class="module" href="#cta" data-reveal style="--i:2"><span class="module__name">Render</span><p>Visualização conceitual e estudo de materiais para apresentação ao cliente.</p><span class="module__link">Conhecer →</span></a>
+    </div>
+  </section>
+
+  <!-- ===== 8. Pesquisa / inovação ===== -->
+  <section class="section research">
+    <div class="research__inner" data-reveal>
+      <span class="research__mark" aria-hidden="true"></span>
+      <p class="tag--static">Pesquisa</p>
+      <h2>Pesquisa que vira ferramenta.</h2>
+      <p>A ArqVista é treinada com normas brasileiras, projetos reais e o vocabulário de quem desenha. A cada cidade nova, o motor de normas aprende a legislação local — e o que a IA aprende em um projeto melhora o próximo.</p>
+    </div>
+  </section>
+
+  <!-- ===== 9. Implantação ===== -->
+  <section class="section deploy" id="precos">
+    <div class="section__head" data-reveal>
+      <p class="tag--static">Como você usa</p>
+      <h2 class="section__title">Do navegador ao ambiente privado.</h2>
+    </div>
+    <div class="deploy__grid">
+      <article class="deploy__col" data-reveal style="--i:0">
+        <h3>Nuvem</h3>
+        <p>Comece em minutos, direto no navegador. Seus arquivos seguros e versionados.</p>
+        <ul><li>Sem instalar nada</li><li>Colaboração em equipe</li><li>Atualizações automáticas</li></ul>
+      </article>
+      <article class="deploy__col deploy__col--featured" data-reveal style="--i:1">
+        <span class="deploy__flag">Mais usado</span>
+        <h3>No seu fluxo</h3>
+        <p>Integra com as ferramentas que você já usa. Exporta mantendo suas camadas e padrões.</p>
+        <ul><li>DWG · IFC · SKP</li><li>Seus templates de prancha</li><li>Padrões do escritório</li></ul>
+      </article>
+      <article class="deploy__col" data-reveal style="--i:2">
+        <h3>Ambiente privado</h3>
+        <p>Para incorporadoras e grandes escritórios: ambiente dedicado e dados isolados.</p>
+        <ul><li>Dados isolados</li><li>SSO e permissões</li><li>Suporte dedicado</li></ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== 10. CTA final ===== -->
+  <section class="section cta-final" id="cta">
+    <div class="cta-final__inner" data-reveal>
+      <h2>Comece pelo próximo projeto.</h2>
+      <p>Suba um briefing e veja o primeiro estudo sair em minutos. O primeiro projeto é por nossa conta.</p>
+      <div class="cta-final__actions">
+        <a class="btn btn--accent btn--lg" href="#">Criar conta grátis →</a>
+        <a class="btn btn--ghost btn--lg" href="#">Falar com a equipe</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 11. Footer ===== -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a class="nav__brand" href="#topo"><span class="nav__mark" aria-hidden="true"></span>ArqVista</a>
+        <p>Inteligência artificial para quem projeta.</p>
+      </div>
+      <div class="footer__cols">
+        <div><h4>Produto</h4><a href="#produto">Capacidades</a><a href="#modulos">Plataforma</a><a href="#precos">Implantação</a></div>
+        <div><h4>Segmentos</h4><a href="#segmentos">Residencial</a><a href="#segmentos">Comercial</a><a href="#segmentos">Incorporação</a></div>
+        <div><h4>Empresa</h4><a href="#">Sobre</a><a href="#">Blog</a><a href="#">Contato</a></div>
+      </div>
+    </div>
+    <div class="footer__base"><span>© 2026 ArqVista</span><span>Feito com IA, no Brasil</span></div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

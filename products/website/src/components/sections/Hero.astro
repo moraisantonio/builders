@@ -316,4 +316,53 @@ const appTabs = ["Artefatos", "Reuniões", "Pagamentos", "Config."];
       gap: 24px;
     }
   }
+
+  /* === Atualização: entrada animada + clima tech/esverdeado === */
+
+  /* Clima teal sobre o céu (reforça o "filtro" esverdeado da marca) */
+  .hero-scene::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      rgba(32, 128, 141, 0.2),
+      rgba(32, 128, 141, 0) 46%
+    );
+    mix-blend-mode: soft-light;
+  }
+
+  /* Entrada em stagger: headline desce, app emerge, paisagem e pitch surgem */
+  @keyframes heroDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: none; } }
+  @keyframes heroUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+  @keyframes heroFade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes heroRise {
+    from { opacity: 0; transform: translateX(-50%) translateY(64px); }
+    to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+  }
+  .hero-intro { animation: heroDown 0.9s var(--ease) both; }
+  .hero-app   { animation: heroRise 1.15s var(--ease) 0.15s both; }
+  .hero-rio   { animation: heroFade 1s var(--ease) 0.1s both; }
+  .hero-pitch { animation: heroUp 0.9s var(--ease) 0.35s both; }
+
+  /* Toque tech: caret piscando no input do app */
+  .hero-app-input { position: relative; }
+  .hero-app-input::after {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 7px;
+    width: 1.5px;
+    height: 14px;
+    background: var(--color-turquoise);
+    animation: caret 1.1s steps(1) infinite;
+  }
+  @keyframes caret { 50% { opacity: 0; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-intro, .hero-app, .hero-rio, .hero-pitch { animation: none; }
+    .hero-app-input::after { animation: none; }
+  }
 </style>

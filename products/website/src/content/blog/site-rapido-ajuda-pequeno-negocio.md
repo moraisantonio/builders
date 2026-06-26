@@ -3,7 +3,7 @@ title: "Por que um site rápido faz seu negócio vender mais"
 description: "Um site que carrega rápido aparece melhor no Google, segura o visitante e vira mais contato. Veja o que muda na prática para pequenos e médios negócios."
 pubDate: 2026-06-10
 author: "Equipe Builders"
-heroImage: "/people-2.jpg"
+heroImage: "/fotos/blog-sites.jpg"
 ---
 
 Um site lento espanta cliente antes mesmo de ele ver o que você faz.

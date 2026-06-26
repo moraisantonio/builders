@@ -149,3 +149,61 @@ h3 {
     padding-inline: 24px;
   }
 }
+
+/* ============================================================
+   Atualização "tech / esverdeado" + animações (feel intercom)
+   Camada aditiva — nada acima foi alterado. Tudo reversível.
+   ============================================================ */
+:root {
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Film esverdeado global: glow teal no topo + lime no canto.
+   Borda da tela, centro transparente — não reduz contraste do texto. */
+.site-film {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 70% at 50% -15%, rgba(32, 128, 141, 0.12), transparent 60%),
+    radial-gradient(70% 50% at 100% 102%, rgba(200, 240, 110, 0.06), transparent 60%);
+}
+
+/* Tom esverdeado nas fotos (Rio, pessoas) — clima de "filtro" da marca */
+.hero-rio,
+.people img,
+.cta .cta-bg,
+.toned {
+  filter: saturate(1.12) contrast(1.04) brightness(1.02) hue-rotate(-6deg);
+}
+
+/* Reveal no scroll — só ativa quando o JS marca <html class="has-reveal">.
+   Sem JS, tudo aparece normal (nada fica escondido). O hero tem animação
+   própria de entrada, então é excluído daqui. */
+html.has-reveal main > section:not(.hero) {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+  will-change: opacity, transform;
+}
+html.has-reveal main > section.in-view {
+  opacity: 1;
+  transform: none;
+}
+
+/* Lift sutil nos botões (toque mais "produto") */
+.btn {
+  transition: opacity 0.15s ease, background-color 0.15s ease, transform 0.2s var(--ease);
+}
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.has-reveal main > section:not(.hero) {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
