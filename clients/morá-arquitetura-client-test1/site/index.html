@@ -1,0 +1,278 @@
+<!doctype html>
+<!--
+  Morá Arquitetura — site institucional (one-page).
+  Estático: HTML + CSS + JS vanilla, sem build. Rodar com um servidor estático.
+  Estilo de animação inspirado em referência de arquitetura (reveal no scroll,
+  smooth scroll, hover nas imagens), mantendo a direção visual aprovada do Morá:
+  off-white amanteigado, serifada editorial + sans limpa, muito respiro.
+-->
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Morá Arquitetura — Arquitetura residencial em São Paulo</title>
+  <meta name="description" content="A Morá projeta e acompanha a obra do começo ao fim — do conceito à chave na mão. Arquitetura residencial e interiores em São Paulo." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ===== Navbar ===== -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="#topo" aria-label="Morá Arquitetura — início">Morá<span>.</span></a>
+      <nav class="nav__links" aria-label="Navegação principal">
+        <a href="#projetos">Projetos</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#processo">Processo</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <a class="btn btn--solid nav__cta" data-wa href="#contato">Falar com a Morá</a>
+      <button class="nav__burger" id="burger" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero" id="topo">
+    <div class="hero__text" data-reveal>
+      <p class="eyebrow">Arquitetura residencial · São Paulo</p>
+      <h1 class="hero__title">Projetos que ficam<br />do jeito que você<br />imaginou.</h1>
+      <p class="hero__sub">
+        A Morá cuida de tudo — do conceito à obra entregue.<br />
+        Você foca em viver o espaço.
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn--solid" data-wa href="#contato">Falar com a Morá →</a>
+        <a class="btn btn--ghost" href="#projetos">Ver projetos</a>
+      </div>
+      <p class="hero__note">7 anos de projetos entregues · Campo Belo, SP</p>
+    </div>
+
+    <figure class="hero__media" data-reveal-img>
+      <!-- FOTO 1 — arquitetura/edifício (vertical) -->
+      <div class="ph ph--hero" data-tone="teal">
+        <img src="assets/hero.jpg" alt="Edifício de arquitetura contemporânea em São Paulo" onerror="this.remove()" />
+        <span class="ph__label">assets/hero.jpg</span>
+      </div>
+    </figure>
+  </section>
+
+  <!-- ===== Projetos ===== -->
+  <section class="section projects" id="projetos">
+    <div class="section__head" data-reveal>
+      <h2 class="section__title">Projetos recentes</h2>
+      <p class="section__lead">Cada projeto é único. O processo é sempre o mesmo.</p>
+    </div>
+
+    <div class="projects__grid">
+      <a class="project" href="#contato" data-reveal style="--i:0">
+        <div class="project__media" data-reveal-img>
+          <!-- FOTO 2 — apartamento, sala de jantar / parede galeria -->
+          <div class="ph ph--portrait" data-tone="warm">
+            <img src="assets/projeto-01.jpg" alt="Apartamento reformado — sala de jantar" onerror="this.remove()" />
+            <span class="ph__label">assets/projeto-01.jpg</span>
+          </div>
+        </div>
+        <div class="project__meta">
+          <span class="project__name">Apartamento Itaim</span>
+          <span class="project__type">Reforma completa · 112 m²</span>
+        </div>
+      </a>
+
+      <a class="project project--tall" href="#contato" data-reveal style="--i:1">
+        <div class="project__media" data-reveal-img>
+          <!-- FOTO 3 — apartamento minimalista, taco / arte -->
+          <div class="ph ph--portrait" data-tone="sand">
+            <img src="assets/projeto-02.jpg" alt="Apartamento — sala de estar minimalista" onerror="this.remove()" />
+            <span class="ph__label">assets/projeto-02.jpg</span>
+          </div>
+        </div>
+        <div class="project__meta">
+          <span class="project__name">Residência Moema</span>
+          <span class="project__type">Interiores · 88 m²</span>
+        </div>
+      </a>
+
+      <a class="project" href="#contato" data-reveal style="--i:2">
+        <div class="project__media" data-reveal-img>
+          <!-- FOTO 4 — home office, estante de design -->
+          <div class="ph ph--portrait" data-tone="clay">
+            <img src="assets/projeto-03.jpg" alt="Apartamento — home office" onerror="this.remove()" />
+            <span class="ph__label">assets/projeto-03.jpg</span>
+          </div>
+        </div>
+        <div class="project__meta">
+          <span class="project__name">Estúdio Vila Nova</span>
+          <span class="project__type">Projeto + obra · 64 m²</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== Faixa atelier (plantas / desenho técnico) ===== -->
+  <section class="band" data-reveal-img>
+    <div class="ph ph--wide" data-tone="sand">
+      <!-- FOTO — mesa do atelier com plantas / desenho técnico -->
+      <img src="assets/atelier.jpg" alt="Plantas e desenho técnico na mesa do atelier" onerror="this.remove()" />
+      <span class="ph__label">assets/atelier.jpg</span>
+    </div>
+    <p class="band__caption">Do desenho técnico ao canteiro — cada detalhe definido antes da obra começar.</p>
+  </section>
+
+  <!-- ===== Diferencial ===== -->
+  <section class="section diff" id="sobre">
+    <div class="diff__grid">
+      <div class="diff__intro" data-reveal>
+        <h2 class="section__title">Você não precisa<br />virar gestor de obra.</h2>
+        <p class="diff__body">
+          A maioria dos escritórios entrega o projeto e some. A Morá não.
+          Mariana e Pedro estão no canteiro toda semana — coordenando fornecedores,
+          resolvendo imprevistos, garantindo que o que foi aprovado seja o que vai ser entregue.
+        </p>
+        <p class="diff__highlight">Em 7 anos, nenhuma obra atrasou mais de 15 dias.</p>
+      </div>
+
+      <ul class="diff__list">
+        <li data-reveal style="--i:0">
+          <span class="diff__num">01</span>
+          <h3>7 anos de obra no prazo</h3>
+          <p>Nenhuma obra atrasou mais de 15 dias.</p>
+        </li>
+        <li data-reveal style="--i:1">
+          <span class="diff__num">02</span>
+          <h3>Aprovação em 3D</h3>
+          <p>Você vê e aprova tudo antes de qualquer execução.</p>
+        </li>
+        <li data-reveal style="--i:2">
+          <span class="diff__num">03</span>
+          <h3>Presença na obra</h3>
+          <p>WhatsApp direto com o arquiteto responsável pelo seu projeto.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== Faixa curadoria (seleção de materiais) ===== -->
+  <section class="band band--split">
+    <div class="band__media" data-reveal-img>
+      <div class="ph ph--mat" data-tone="warm">
+        <!-- FOTO — seleção de materiais (amostras, madeira, pedra) -->
+        <img src="assets/curadoria.jpg" alt="Seleção de materiais e amostras" onerror="this.remove()" />
+        <span class="ph__label">assets/curadoria.jpg</span>
+      </div>
+    </div>
+    <div class="band__text" data-reveal>
+      <p class="eyebrow">Curadoria própria</p>
+      <h2 class="section__title">Materiais e fornecedores<br />escolhidos a dedo.</h2>
+      <p class="band__body">
+        Marcenaria, revestimentos, pedras e iluminação. A Morá seleciona e coordena
+        parceiros de confiança — você aprova, a gente cuida do resto.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== Processo ===== -->
+  <section class="section process" id="processo">
+    <div class="section__head" data-reveal>
+      <h2 class="section__title">Do primeiro contato<br />à chave na mão.</h2>
+      <p class="section__lead">Quatro etapas. Sem surpresa.</p>
+    </div>
+
+    <ol class="process__steps">
+      <li data-reveal style="--i:0">
+        <span class="process__num">01</span>
+        <div>
+          <h3>Conversa inicial</h3>
+          <p>Entendemos o espaço, o estilo e o objetivo. Sem compromisso.</p>
+        </div>
+      </li>
+      <li data-reveal style="--i:1">
+        <span class="process__num">02</span>
+        <div>
+          <h3>Projeto</h3>
+          <p>Planta, ambientação 3D e todos os detalhes aprovados antes de qualquer execução.</p>
+        </div>
+      </li>
+      <li data-reveal style="--i:2">
+        <span class="process__num">03</span>
+        <div>
+          <h3>Fornecedores</h3>
+          <p>A Morá seleciona e coordena marceneiros, revestimentos e parceiros de confiança — sem você precisar gerenciar nada.</p>
+        </div>
+      </li>
+      <li data-reveal style="--i:3">
+        <span class="process__num">04</span>
+        <div>
+          <h3>Acompanhamento de obra</h3>
+          <p>Visitas semanais, relatório e WhatsApp direto até a entrega.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ===== Números ===== -->
+  <section class="section stats">
+    <div class="stats__grid">
+      <div class="stat" data-reveal style="--i:0">
+        <span class="stat__num" data-count="7">0</span>
+        <span class="stat__label">anos de projetos residenciais em São Paulo</span>
+      </div>
+      <div class="stat" data-reveal style="--i:1">
+        <span class="stat__num" data-count="100" data-suffix="%">0</span>
+        <span class="stat__label">dos projetos com apresentação em 3D antes da execução</span>
+      </div>
+      <div class="stat" data-reveal style="--i:2">
+        <span class="stat__num" data-count="3">0</span>
+        <span class="stat__label">bairros mais atendidos: Itaim, Moema e Vila Nova Conceição</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA final ===== -->
+  <section class="section cta" id="contato">
+    <div class="cta__inner" data-reveal>
+      <p class="eyebrow">Vamos conversar</p>
+      <h2 class="cta__title">Pronto para conversar<br />sobre o seu apartamento?</h2>
+      <p class="cta__sub">
+        Uma conversa de 30 minutos já dá para entender<br />
+        se faz sentido trabalharmos juntos.
+      </p>
+      <div class="cta__actions">
+        <a class="btn btn--solid" data-wa href="#contato">Falar pelo WhatsApp →</a>
+        <a class="btn btn--ghost" href="#contato">Enviar briefing inicial</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">Morá<span>.</span></span>
+        <p>Arquitetura residencial e interiores · São Paulo</p>
+      </div>
+      <nav class="footer__nav" aria-label="Rodapé">
+        <a href="#projetos">Projetos</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#processo">Processo</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <div class="footer__contact">
+        <a href="https://instagram.com/mora.arq" target="_blank" rel="noopener">@mora.arq</a>
+        <p>Campo Belo, São Paulo — SP</p>
+        <p>Atuação: SP capital e região</p>
+      </div>
+    </div>
+    <div class="footer__base">
+      <span>© 2026 Morá Arquitetura</span>
+      <span>Site por Builders</span>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
