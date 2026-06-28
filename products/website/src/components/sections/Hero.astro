@@ -88,9 +88,8 @@ const appTabs = ["Artefatos", "Reuniões", "Pagamentos", "Config."];
     overflow: hidden;
     /* Altura fixa: previsível em qualquer monitor (vh deixava a cena curta
        em telas mais baixas e o app subia por cima da headline).
-       App e morro ancorados na base sobem juntos quando esta altura diminui.
-       Cena mais alta = mais folga entre a headline (topo) e o app (base). */
-    min-height: 820px;
+       App e morro ancorados na base sobem juntos quando esta altura diminui. */
+    min-height: 700px;
     background: linear-gradient(
       to bottom,
       #2e93d2 0%,
@@ -128,7 +127,7 @@ const appTabs = ["Artefatos", "Reuniões", "Pagamentos", "Config."];
   .hero-rio {
     position: absolute;
     left: 50%;
-    bottom: -150px;
+    bottom: -80px;
     transform: translateX(-50%);
     width: 100%;
     min-width: 1180px;
@@ -146,9 +145,8 @@ const appTabs = ["Artefatos", "Reuniões", "Pagamentos", "Config."];
     transform: translateX(-50%);
     z-index: 1;
     width: min(600px, 58%);
-    /* Topo do app = altura da cena − esta altura. Com a cena em 820px,
-       o topo do app fica ~420px, bem abaixo da headline. */
-    height: 400px;
+    /* Altura menor → topo do app desce, ficando abaixo da headline. */
+    height: 350px;
     display: flex;
     flex-direction: column;
     border-radius: 14px 14px 0 0;
@@ -289,7 +287,7 @@ const appTabs = ["Artefatos", "Reuniões", "Pagamentos", "Config."];
   /* Tablet */
   @media (max-width: 860px) {
     .hero-scene {
-      min-height: 720px;
+      min-height: 620px;
     }
     .hero-intro {
       padding-top: 116px;
