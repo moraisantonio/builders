@@ -1,9 +1,15 @@
 ---
-// Dobra 5 — Sites que já fizemos (portfólio resumido).
+// Dobra 5 — Sites que já fizemos (portfólio).
+// Cada card tem uma capa: imagem do site (quando há) ou gradiente da marca.
+// Para trocar/colocar a imagem real de um site: jogue o arquivo em
+// public/portfolio/<nome>.jpg e aponte `img` aqui.
+// Portfólio: 4 cards lado a lado. Imagem do site em cada cliente;
+// "Seu site aqui" fica branco com o "+".
 const cases = [
-  { tag: "Arquitetura", title: "Morá Arquitetura", bg: "linear-gradient(135deg, #133B39, #20808D)" },
-  { tag: "drip · Cafeteria", title: "Café Origem", bg: "linear-gradient(135deg, #2E5E5A, #c8f06e)" },
-  { tag: "Em breve", title: "Seu site aqui", bg: "linear-gradient(135deg, #E4E3D4, #FBFAF4)" },
+  { tag: "Arquitetura", title: "Morá Arquitetura", img: "/portfolio/mora.jpg" },
+  { tag: "IA · SaaS", title: "ArqVista", img: "/portfolio/arqvista.jpg" },
+  { tag: "Cafeterias", title: "drip", img: "/portfolio/drip.jpg" },
+  { tag: "Em breve", title: "Seu site aqui", bg: "#FFFFFF", soon: true },
 ];
 ---
 
@@ -14,8 +20,17 @@ const cases = [
     <div class="cases-grid">
       {
         cases.map((c) => (
-          <article class="case-card">
-            <div class="case-cover" style={`background:${c.bg}`} />
+          <article class={`case-card${c.soon ? " case-card--soon" : ""}`}>
+            <div
+              class="case-cover"
+              style={
+                c.img
+                  ? `background-image: linear-gradient(180deg, rgba(9,23,23,0) 55%, rgba(9,23,23,.28)), url('${c.img}')`
+                  : `background:${c.bg}`
+              }
+            >
+              {c.soon && <span class="case-plus">+</span>}
+            </div>
             <div class="case-body">
               <p class="case-tag">{c.tag}</p>
               <h3>{c.title}</h3>
@@ -40,7 +55,7 @@ const cases = [
   }
   .cases-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
     gap: 16px;
   }
   .case-card {
@@ -48,9 +63,33 @@ const cases = [
     overflow: hidden;
     border: 1px solid var(--color-ecru);
     background: #fff;
+    transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
+  }
+  .case-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-turquoise);
+    box-shadow: 0 18px 50px rgba(9, 23, 23, 0.12);
   }
   .case-cover {
-    height: 180px;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.6s var(--ease);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .case-card:hover .case-cover {
+    transform: scale(1.04);
+  }
+  .case-card--soon .case-cover {
+    border-bottom: 1px dashed var(--color-gray-light, #d8d8d2);
+  }
+  .case-plus {
+    font-size: 34px;
+    font-weight: 300;
+    color: var(--color-turquoise);
+    opacity: 0.6;
   }
   .case-body {
     padding: 20px;
@@ -68,7 +107,12 @@ const cases = [
     color: var(--color-off-black);
     margin: 0;
   }
-  @media (max-width: 720px) {
+  @media (max-width: 920px) {
+    .cases-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 560px) {
     .cases-grid {
       grid-template-columns: 1fr;
     }
