@@ -1,0 +1,598 @@
+/* Home — Margareth Maroto Paisagismo.
+   Paleta e logo: design-direction.md. Texto: brand-voice.md (voz no plural,
+   credencial dissolvida na frase, tagline "espaços cinzas em galerias vivas").
+   Padrões de layout puxados das referências em assets/referencias/landing-pages-exemplo:
+   cards flutuantes sobre foto (leaflife/GardenView), faixa de credenciais logo
+   abaixo do hero (Greenhaven), timeline numerada de processo (leaflife),
+   cards de serviço verticais (leaflife). */
+
+:root {
+  --verde-floresta: #24382d;
+  --verde-profundo: #16241c;
+  --verde-medio: #35503f;
+  --verde-limao: #c0cf29;
+  --off-white: #f7f5ee;
+  --creme: #ece8d9;
+  --texto-claro: #f4f2e8;
+  --texto-escuro: #1a2820;
+  --texto-secundario: #616d5d;
+  --borda: #ddd8c7;
+  --borda-clara: rgba(255, 255, 255, 0.14);
+
+  --serif: "Fraunces", Georgia, serif;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --container: 1240px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  color: var(--texto-escuro);
+  background: var(--off-white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+li { list-style: none; }
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+h1, h2, h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+}
+
+h1 { font-size: clamp(2.6rem, 5.4vw, 4.4rem); }
+h2 { font-size: clamp(2rem, 3.6vw, 3.1rem); }
+h3 { font-size: 1.25rem; font-weight: 500; }
+
+p { color: var(--texto-secundario); }
+
+.eyebrow {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--verde-limao);
+  margin-bottom: 18px;
+}
+
+.eyebrow--escuro { color: #7c9463; }
+
+.secao { padding: 112px 0; }
+.secao--escura { background: var(--verde-floresta); color: var(--texto-claro); }
+.secao--escura h2, .secao--escura h3 { color: var(--texto-claro); }
+.secao--escura p { color: #c3cdba; }
+.secao--creme { background: var(--creme); }
+
+.secao__intro { max-width: 620px; margin-bottom: 56px; }
+.secao__intro p { margin-top: 18px; font-size: 1.08rem; }
+
+/* ---------- Botões ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10.5px 30px;
+  border-radius: 999px;
+  font-size: 0.94rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+
+.btn:hover { transform: translateY(-2px); }
+
+.btn--primario { background: var(--verde-limao); color: var(--verde-profundo); }
+.btn--primario:hover { background: #d2e13f; }
+
+.btn--fantasma {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.32);
+  color: var(--texto-claro);
+}
+.btn--fantasma:hover { border-color: rgba(255, 255, 255, 0.7); }
+
+.btn--escuro { background: var(--verde-floresta); color: var(--texto-claro); }
+.btn--escuro:hover { background: var(--verde-profundo); }
+
+/* ---------- Navbar ---------- */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: rgba(22, 36, 28, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--borda-clara);
+}
+
+.navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  height: 88px;
+}
+
+.navbar__logo img { height: 42px; width: auto; }
+
+.navbar__nav {
+  display: flex;
+  align-items: center;
+  gap: 38px;
+  margin-left: auto;
+}
+
+/* :not(.btn) para o link de menu não sobrescrever a cor do texto do CTA —
+   a especificidade de `.navbar__nav a` vence a de `.btn--primario`. */
+.navbar__nav a:not(.btn) {
+  font-size: 0.93rem;
+  color: #d2dbc9;
+  transition: color 0.18s ease;
+}
+
+.navbar__nav a:not(.btn):hover { color: var(--verde-limao); }
+
+.navbar__toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--texto-claro);
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  background: var(--verde-floresta);
+  color: var(--texto-claro);
+  padding: 104px 0 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 60%;
+  height: 120%;
+  background: radial-gradient(ellipse at center, rgba(53, 80, 63, 0.85) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.hero .container {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 72px;
+  align-items: center;
+}
+
+.hero h1 { color: var(--texto-claro); }
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--verde-limao);
+}
+
+.hero__sub {
+  margin-top: 26px;
+  font-size: 1.16rem;
+  color: #cbd5c1;
+  max-width: 480px;
+}
+
+.hero__cta {
+  margin-top: 40px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.hero__texto { padding-bottom: 104px; }
+
+/* Retrato da Margareth — presença sem virar fundo gigante */
+.hero__retrato {
+  position: relative;
+  align-self: end;
+  margin-bottom: -1px;
+}
+
+.hero__retrato img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center 22%;
+  border-radius: 200px 200px 0 0;
+}
+
+.hero__legenda {
+  position: absolute;
+  left: -38px;
+  bottom: 76px;
+  background: var(--off-white);
+  color: var(--texto-escuro);
+  border-radius: 14px;
+  padding: 16px 20px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+  max-width: 210px;
+}
+
+.hero__legenda strong {
+  display: block;
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.hero__legenda span {
+  font-size: 0.82rem;
+  color: var(--texto-secundario);
+}
+
+/* ---------- Faixa de credenciais ---------- */
+
+.credenciais {
+  background: var(--verde-profundo);
+  border-top: 1px solid var(--borda-clara);
+}
+
+.credenciais .container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.credencial {
+  padding: 38px 28px;
+  border-right: 1px solid var(--borda-clara);
+}
+
+.credencial:first-child { padding-left: 0; }
+.credencial:last-child { border-right: none; }
+
+.credencial strong {
+  display: block;
+  font-family: var(--serif);
+  font-size: 1.45rem;
+  font-weight: 400;
+  color: var(--verde-limao);
+  margin-bottom: 4px;
+}
+
+.credencial span { font-size: 0.88rem; color: #a8b59c; }
+
+/* ---------- Serviços (cards verticais, ref. leaflife) ---------- */
+
+.servicos__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.servico {
+  position: relative;
+  min-height: 420px;
+  border-radius: 18px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  background: linear-gradient(170deg, #3f5c48 0%, #24382d 60%, #182a20 100%);
+  color: var(--texto-claro);
+  transition: transform 0.25s ease;
+}
+
+.servico:hover { transform: translateY(-6px); }
+
+.servico__num {
+  position: absolute;
+  top: 28px;
+  left: 32px;
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  color: var(--verde-limao);
+}
+
+.servico__seta {
+  position: absolute;
+  top: 26px;
+  right: 28px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--borda-clara);
+  display: grid;
+  place-items: center;
+  font-size: 1rem;
+}
+
+.servico h3 { margin-bottom: 10px; }
+.servico p { color: #c3cdba; font-size: 0.95rem; }
+
+/* ---------- Projeto em destaque ---------- */
+
+.destaque {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  min-height: 520px;
+  background: linear-gradient(150deg, #43654d 0%, #24382d 55%, #16241c 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 44px;
+}
+
+.destaque::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(192, 207, 41, 0.1) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+/* Card flutuante sobre a foto — padrão das referências */
+.destaque__card {
+  position: relative;
+  z-index: 2;
+  background: rgba(247, 245, 238, 0.97);
+  border-radius: 16px;
+  padding: 30px 32px;
+  max-width: 440px;
+}
+
+.destaque__card .eyebrow { color: #7c9463; margin-bottom: 12px; }
+.destaque__card h3 { font-size: 1.6rem; margin-bottom: 12px; }
+.destaque__card p { font-size: 0.97rem; }
+
+.destaque__meta {
+  display: flex;
+  gap: 24px;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--borda);
+  font-size: 0.82rem;
+  color: var(--texto-secundario);
+}
+
+.projetos__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.projeto {
+  border-radius: 16px;
+  min-height: 260px;
+  padding: 24px;
+  display: flex;
+  align-items: flex-end;
+  background: linear-gradient(160deg, #3a5540 0%, #24382d 70%);
+  border: 1px solid var(--borda-clara);
+}
+
+.projeto strong {
+  display: block;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1.15rem;
+  color: var(--texto-claro);
+}
+
+.projeto span { font-size: 0.82rem; color: #a8b59c; }
+
+/* ---------- Processo (timeline numerada, ref. leaflife) ---------- */
+
+.processo {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  margin-top: 12px;
+}
+
+.etapa { position: relative; padding-top: 40px; }
+
+.etapa::before {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: 0;
+  right: -28px;
+  height: 1px;
+  background: var(--borda-clara);
+}
+
+.etapa:last-child::before { right: 0; }
+
+.etapa::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--verde-limao);
+}
+
+.etapa__num {
+  font-family: var(--serif);
+  font-size: 0.85rem;
+  color: var(--verde-limao);
+  letter-spacing: 0.08em;
+}
+
+.etapa h3 { margin: 8px 0 10px; }
+.etapa p { font-size: 0.94rem; }
+
+/* ---------- Citação ---------- */
+
+.citacao { text-align: center; }
+
+.citacao blockquote {
+  font-family: var(--serif);
+  font-size: clamp(1.7rem, 3.2vw, 2.6rem);
+  line-height: 1.25;
+  color: var(--verde-floresta);
+  max-width: 860px;
+  margin: 0 auto;
+  font-style: italic;
+}
+
+.citacao cite {
+  display: block;
+  margin-top: 26px;
+  font-family: var(--sans);
+  font-style: normal;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--texto-secundario);
+}
+
+/* ---------- Sobre ---------- */
+
+.sobre {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: center;
+}
+
+.sobre__foto {
+  border-radius: 20px;
+  min-height: 460px;
+  background: linear-gradient(155deg, #dfe4d2 0%, #b9c9a8 55%, #7d9a6d 100%);
+}
+
+.sobre p + p { margin-top: 16px; }
+
+.sobre__marca {
+  margin-top: 32px;
+  background: #fff;
+  border: 1px solid var(--borda);
+  border-radius: 16px;
+  padding: 24px 26px;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.sobre__marca img { width: 44px; flex-shrink: 0; }
+.sobre__marca strong { color: var(--verde-floresta); display: block; margin-bottom: 4px; }
+.sobre__marca p { font-size: 0.93rem; }
+
+/* ---------- Construtoras ---------- */
+
+.construtoras { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; }
+
+.construtoras__lista { margin-top: 28px; display: grid; gap: 0; }
+
+.construtoras__lista li {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--borda-clara);
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+  color: #c3cdba;
+}
+
+.construtoras__lista li span {
+  font-family: var(--serif);
+  color: var(--verde-limao);
+  font-size: 0.85rem;
+}
+
+/* ---------- CTA final ---------- */
+
+.cta { text-align: center; }
+.cta h2 { max-width: 700px; margin: 0 auto 18px; }
+.cta p { max-width: 480px; margin: 0 auto 36px; font-size: 1.08rem; }
+
+/* ---------- Footer ---------- */
+
+.footer {
+  background: var(--verde-profundo);
+  color: #9aa88e;
+  padding: 72px 0 32px;
+}
+
+.footer__topo {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 48px;
+}
+
+.footer img { height: 38px; width: auto; margin-bottom: 20px; }
+.footer p { color: #9aa88e; font-size: 0.92rem; max-width: 280px; }
+
+.footer h4 {
+  font-family: var(--sans);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--texto-claro);
+  margin-bottom: 18px;
+}
+
+.footer__col a {
+  display: block;
+  font-size: 0.92rem;
+  margin-bottom: 10px;
+  transition: color 0.18s ease;
+}
+
+.footer__col a:hover { color: var(--verde-limao); }
+
+.footer__baixo {
+  margin-top: 56px;
+  padding-top: 26px;
+  border-top: 1px solid var(--borda-clara);
+  font-size: 0.8rem;
+}
+
+/* ---------- Responsivo ---------- */
+
+@media (max-width: 980px) {
+  .navbar__nav { display: none; }
+  .navbar__toggle { display: block; }
+
+  .hero { padding-top: 72px; }
+  .hero .container { grid-template-columns: 1fr; gap: 48px; }
+  .hero__texto { padding-bottom: 0; }
+  .hero__retrato { max-width: 380px; margin: 0 auto -1px; }
+  .hero__legenda { left: 0; bottom: 24px; }
+
+  .credenciais .container { grid-template-columns: 1fr 1fr; }
+  .credencial { padding: 26px 20px; }
+  .credencial:nth-child(2) { border-right: none; }
+
+  .servicos__grid, .projetos__grid, .processo { grid-template-columns: 1fr; }
+  .etapa::before { display: none; }
+  .sobre, .construtoras { grid-template-columns: 1fr; gap: 40px; }
+  .footer__topo { grid-template-columns: 1fr; gap: 32px; }
+  .secao { padding: 72px 0; }
+  .destaque { padding: 24px; min-height: 460px; }
+}
